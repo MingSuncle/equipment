@@ -3,14 +3,22 @@
 
 <mapper namespace="com.example.equipmentmanagementspring.mapper.AIInformationDao">
     <select id="queryAIInformationList" resultType="com.example.equipmentmanagementspring.entity.AIInformationEntity">
-         select * from `aieventmessage` ORDER BY `state` asc,`message_id` asc
+        select *
+        from `aieventmessage`
+        ORDER BY `state` asc, `message_id` asc,`time` desc
+
     </select>
 
-    <select id="queryAIInformationListByProId" resultType="com.example.equipmentmanagementspring.entity.AIInformationEntity">
-    select * from `aieventmessage` where `project_id` = #{proId} ORDER BY `state` asc
+    <select id="queryAIInformationListByProId"
+            resultType="com.example.equipmentmanagementspring.entity.AIInformationEntity">
+        select *
+        from `aieventmessage`
+        where `project_id` = #{proId}
+        ORDER BY `state` asc,`time` desc
     </select>
 
-    <select id="queryUnconfirmedAIInformationList" parameterType="java.util.List" resultType="com.example.equipmentmanagementspring.entity.AIInformationEntity">
+    <select id="queryUnconfirmedAIInformationList" parameterType="java.util.List"
+            resultType="com.example.equipmentmanagementspring.entity.AIInformationEntity">
         select * from `aieventmessage`
         <where>
             <if test="state != null">
@@ -19,13 +27,13 @@
 
             <if test="proId != null">
                 AND `project_id` in
-                <foreach item="id" collection="proId"  open="(" separator="," close=")">
+                <foreach item="id" collection="proId" open="(" separator="," close=")">
                     #{id}
                 </foreach>
             </if>
             <if test="type != null and type.size() > 0">
                 AND `AIevent_name` in
-                <foreach item="ty" collection="type"  open="(" separator="," close=")">
+                <foreach item="ty" collection="type" open="(" separator="," close=")">
                     #{ty}
                 </foreach>
             </if>
@@ -37,7 +45,7 @@
             </if>
 
         </where>
-        ORDER BY `state` asc
+        ORDER BY `state` asc,`time` desc
 
         <if test="currentPage != null and pageSize!= null">
             limit
@@ -54,13 +62,13 @@
 
             <if test="proId != null">
                 AND `project_id` in
-                <foreach item="id" collection="proId"  open="(" separator="," close=")">
+                <foreach item="id" collection="proId" open="(" separator="," close=")">
                     #{id}
                 </foreach>
             </if>
             <if test="type != null and type.size() > 0">
                 AND `AIevent_name` in
-                <foreach item="ty" collection="type"  open="(" separator="," close=")">
+                <foreach item="ty" collection="type" open="(" separator="," close=")">
                     #{ty}
                 </foreach>
             </if>
@@ -72,21 +80,25 @@
             </if>
 
         </where>
-
+        ORDER BY `time` desc
     </select>
 
     <select id="AIInformationNumByIdState" resultType="Long">
         select COUNT(*)
-        from `aieventmessage` `t1`,`user_project` `t2`
-		where
-		`t2`.`user_id`=#{usrId} AND `t1`.`project_id`=`t2`.`project_id` AND `t1`.state=#{state}
+        from `aieventmessage` `t1`,
+             `user_project` `t2`
+        where `t2`.`user_id` = #{usrId}
+          AND `t1`.`project_id` = `t2`.`project_id`
+          AND `t1`.state = #{state}
+        ORDER BY `time` desc
     </select>
 
     <select id="AIInformationByIdState" resultType="com.example.equipmentmanagementspring.entity.AIInformationEntity">
         select *
         from `aieventmessage` `t1`,`user_project` `t2`
-		where
-		`t2`.`user_id`=#{usrId} AND `t1`.`project_id`=`t2`.`project_id` AND `t1`.state=#{state}
+        where
+        `t2`.`user_id`=#{usrId} AND `t1`.`project_id`=`t2`.`project_id` AND `t1`.state=#{state}
+        ORDER BY `time` desc
         <if test="currentPage != null and pageSize!= null">
             limit
             #{currentPage},#{pageSize}
