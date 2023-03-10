@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.equipmentmanagementspring.mapper.ProcessInformationDao">
+    <select id="queryProcessInformations" resultType = "com.example.equipmentmanagementspring.form.ProcessInformationForm">
+        select
+            `process_id` AS processID,
+            `message_id` AS messageID,
+            `sender_id` AS senderID,
+            `send_time` AS sendTime,
+            `process_remark` AS processRemark,
+            `process_request` AS processRequest,
+            `process_deadline` AS processDeadline,
+            `name` AS processor,
+            `processor_id` AS processorId
+        from
+            `processinfo` `t1`,`user` `t2`
+        where
+            `t1`.`processor_id`= `t2`.`user_id`
+    </select>
+
+    <select id="queryProcessInformationsByMessageId" resultType = "com.example.equipmentmanagementspring.form.ProcessInformationForm">
+       select
+             `process_id` AS processID,
+            `message_id` AS messageID,
+            `send_time` AS sendTime,
+            `sender_id` AS senderId,
+            `process_remark` AS processRemark,
+            `process_request` AS processRequest,
+            `process_deadline` AS processDeadline,
+            `name` AS processor,
+            `processor_id` AS processorId,
+						`a`.sender AS sender
+        from
+          (  select
+            `process_id` AS processID,
+            `name` AS sender
+
+        from
+            `processinfo` `t1`,`user` `t2`
+        where
+            `t1`.`message_id` =#{messageId} AND `t1`.`sender_id`= `t2`.`user_id`
+				)AS a,`processinfo` `t1`,`user` `t2`
+
+			  where
+        `t1`.`message_id` = #{messageId} AND `t1`.`processor_id`= `t2`.`user_id` AND `a`.`processID` = `t1`.`process_id`
+        ORDER BY processID ASC
+        <if test="currentPage != null and pageSize!= null">
+            limit
+            #{currentPage},#{pageSize}
+        </if>
+    </select>
+
+    <select id="queryProcessInformationsByUserId" resultType = "com.example.equipmentmanagementspring.form.ProcessInformationForm">
+        select
+            `process_id` AS processID,
+            `t1`.`message_id` AS messageID,
+            `send_time` AS sendTime,
+            `sender_id` AS senderId,
+            `process_remark` AS processRemark,
+            `process_request` AS processRequest,
+            `process_deadline` AS processDeadline,
+            `name` AS processor,
+            `processor_id` AS processorId
+
+        from
+            `processinfo` `t1`,`user` `t2`,`user_project` `t3`,`aieventmessage` `t4`
+        where
+            `t3`.`user_id` = #{userId} AND `t3`.`project_id`= `t4`.`project_id` AND `t4`.`message_id`=`t1`.`message_id` AND `t1`.`processor_id` = `t2`.`user_id`
+        ORDER BY processID ASC
+        <if test="currentPage != null and pageSize!= null">
+            limit
+            #{currentPage},#{pageSize}
+        </if>
+
+    </select>
+
+    <select id="queryUserInformationsByUProId" resultType = "com.example.equipmentmanagementspring.form.UserForm">
+                select
+						t2.user_id AS userId,
+						t2.name AS userName
+				from
+						`aieventmessage` `t1`,`user` `t2`,`user_project` `t3`
+				WHERE
+						`t1`.`message_id`=#{messageId} AND `t1`.`project_id`=`t3`.`project_id` AND `t2`.`user_id`=`t3`.`user_id`
+
+
+    </select>
+
+    <select id="lastProcessInformationByMessageId" resultType = "com.example.equipmentmanagementspring.form.ProcessInformationForm">
+               select
+             `process_id` AS processID,
+            `message_id` AS messageID,
+            `send_time` AS sendTime,
+            `sender_id` AS senderId,
+            `process_remark` AS processRemark,
+            `process_request` AS processRequest,
+            `process_deadline` AS processDeadline,
+            `name` AS processor,
+            `processor_id` AS processorId,
+						`a`.sender AS sender
+        from
+          (  select
+            `process_id` AS processID,
+            `name` AS sender
+
+        from
+            `processinfo` `t1`,`user` `t2`
+        where
+            `t1`.`message_id` =#{messageId} AND `t1`.`sender_id`= `t2`.`user_id`
+				)AS a,`processinfo` `t1`,`user` `t2`
+
+			  where
+        `t1`.`message_id` = #{messageId} AND `t1`.`processor_id`= `t2`.`user_id` AND `a`.`processID` = `t1`.`process_id`
+ ORDER BY `process_id` DESC LIMIT 1
+    </select>
+</mapper>

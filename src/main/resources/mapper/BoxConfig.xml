@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.equipmentmanagementspring.mapper.BoxConfigDao">
+    <select id="SelectBoxConfig" resultType="com.example.equipmentmanagementspring.entity.BoxConfigEntity">
+        select * from `box_config`
+        WHERE
+        `box_no` = #{boxNo}
+        ORDER BY `state` ASC
+    </select>
+
+    <select id="getBoxConfigListByName" resultType="com.example.equipmentmanagementspring.entity.BoxConfigEntity">
+        select * from `box_config`
+        WHERE
+        `box_center_id`=#{centerId} AND `state` in ("0","2") AND `box_name` like CONCAT(CONCAT('%',#{boxName},'%'))
+        <if test="currentPage != null and pageSize!= null">
+            limit
+            #{currentPage},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getBoxConfigListNumByName" resultType="Integer">
+        select COUNT(*) from `box_config`
+        WHERE
+        `box_center_id`=#{centerId} AND `state` in ("0","2") AND `box_name` like CONCAT(CONCAT('%',#{boxName},'%'))
+    </select>
+
+    <delete id="deleteBoxConfig">
+        delete from `box_config` WHERE `box_no` = #{boxNo} AND `state` =#{state}
+    </delete>
+    
+    <select id="getBoxConfigListNum" resultType="Integer">
+        select count(*) from `box_config`
+        WHERE
+        `box_center_id`=#{centerId} AND `state` in ("0","2")
+    </select>
+
+    <select id="getBoxConfigList" resultType="com.example.equipmentmanagementspring.entity.BoxConfigEntity">
+        select * from `box_config`
+        WHERE
+        `box_center_id`=#{centerId} AND `state` in ("0","2")
+        <if test="currentPage != null and pageSize!= null">
+            limit
+            #{currentPage},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getBoxConfig" resultType="com.example.equipmentmanagementspring.entity.BoxConfigEntity">
+        select * from `box_config`
+        WHERE
+        `box_no` = #{boxId} AND `state` = #{state}
+    </select>
+</mapper>

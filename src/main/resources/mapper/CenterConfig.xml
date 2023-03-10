@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.equipmentmanagementspring.mapper.CenterConfigDao">
+    <select id="SelectCenterConfig" resultType="com.example.equipmentmanagementspring.entity.CenterConfigEntity">
+        select * from `center_config` WHERE `center_id` = #{centerId}
+        order by `state` ASC
+    </select>
+
+    <delete id="deleteCenterConfig">
+        delete from `center_config` WHERE `center_id` = #{centerId} AND `state` = #{state}
+    </delete>
+    
+    <select id="getCenterConfigListNum" resultType="Integer">
+        select count(*) from `center_config` `t1`,`user_project` `t2`
+        WHERE
+        `t2`.`user_id`= #{usrId} AND `t2`.`project_id` = `t1`.`project_id`  AND `t1`.`state` in ("0","2")
+    </select>
+
+    <select id="getCenterConfigList" resultType="com.example.equipmentmanagementspring.entity.CenterConfigEntity">
+        select `t1`.* from `center_config` `t1`,`user_project` `t2`
+        WHERE
+        `t2`.`user_id`= #{usrId} AND `t2`.`project_id` = `t1`.`project_id` AND `t1`.`state` in ("0","2")
+        <if test="currentPage != null and pageSize!= null">
+            limit
+            #{currentPage},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getCenterConfig" resultType="com.example.equipmentmanagementspring.entity.CenterConfigEntity">
+        select * from `center_config`
+        WHERE
+        `center_id` = #{centerId} AND `state` = #{state}
+    </select>
+</mapper>

@@ -1,0 +1,74 @@
+server:
+  port: 8888
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20M
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+
+  # 数据库驱动
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.100.71.212:3306/ai_db?serverTimezone=GMT%2b8
+    username: root
+    password: zza19991225
+
+token:
+  expireDate: 108000000
+  secret: equipmentmanagement
+
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  # 配置xml文件中用到的实体的路径
+  type-aliases-package: com.example.equipmentmanagementspring.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+user.filepath: /root/picture/
+#user.filepath: E:/upload/
+
+# github 捞来的 swagger，因为不喜欢原来那种 ui，所以选择用这个做 Api 文档
+knife4j:
+  enable: true
+  setting:
+    language: zh-CN
+    enableSwaggerModels: true
+    enableDocumentManage: true
+    swaggerModelName: 实体类列表
+    enableVersion: false
+    enableReloadCacheParameter: false
+    enableAfterScript: true
+    enableFilterMultipartApiMethodType: POST
+    enableFilterMultipartApis: false
+    enableRequestCache: true
+    enableHost: false
+    enableHostText: 192.168.0.193:8000
+    enableHomeCustom: true
+    homeCustomLocation:
+    enableSearch: false
+    enableFooter: false
+    enableFooterCustom: true
+    footerCustomContent: Apache License 2.0 | Copyright  2019-[浙江八一菜刀股份有限公司](https://gitee.com/xiaoym/knife4j)
+    enableDynamicParameter: false
+    enableDebug: true
+    enableOpenApi: false
+    enableGroup: true
+  cors: false
+  production: false
+  basic:
+    enable: false
+    username: test
+    password: 12313

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.equipmentmanagementspring.mapper.ChartsDao">
+    <resultMap id="CountMap" type="com.example.equipmentmanagementspring.form.ChartForm">
+        <result property="value" column="value"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <resultMap id="EventMap" type="com.example.equipmentmanagementspring.form.EventForm">
+        <result property="value" column="AIevent_id"/>
+        <result property="label" column="AIevent_name"/>
+    </resultMap>
+
+    <select id="getEvent" resultMap="EventMap">
+        SElECT * FROM aievent
+    </select>
+
+    <select id="CountSum" resultMap="CountMap">
+        SELECT COUNT(*) AS value,t2.AIevent_name AS name
+        FROM `aieventmessage` t1,`aievent` t2,user_project t3
+        WHERE t1.AIevent_name = t2.AIevent_id
+        AND t1.project_id = t3.project_id
+        AND t3.user_id = #{userId}
+        GROUP BY t1.`AIevent_name`
+    </select>
+
+    <select id="IpcData" resultMap="CountMap">
+        SELECT COUNT(*) AS value,t1.ipc_ip AS name
+        FROM `aieventmessage` t1,user_project t3
+        WHERE t1.project_id = t3.project_id
+          AND t3.user_id = #{userId}
+        GROUP BY t1.`ipc_ip`
+    </select>
+
+    <select id="todayData" resultMap="CountMap">
+        SELECT count(*) AS value,DATE_FORMAT(time,"%H:%i:00") AS name
+        FROM `aieventmessage` t1,user_project t3
+        WHERE to_days(time) = to_days(now())
+        AND t1.project_id = t3.project_id
+        AND t3.user_id = #{userId}
+        AND t1.AIevent_name = #{eventId}
+        GROUP BY DATE_FORMAT(time,"%H:%i:00")
+    </select>
+
+    <select id="dataByDay" resultMap="CountMap">
+        SELECT count(*) AS value,DATE_FORMAT(time,"%Y-%m-%d") AS name
+        FROM `aieventmessage` t1,user_project t3
+        WHERE t1.project_id = t3.project_id
+          AND t3.user_id = #{userId}
+          AND t1.AIevent_name = #{eventId}
+        GROUP BY DATE_FORMAT(time,"%Y-%m-%d")
+    </select>
+
+    <select id="totalNum" resultType="Integer">
+        SELECT count(*)
+        FROM aieventmessage t1,user_project t2
+          WHERE t1.project_id = t2 . project_id
+          AND t2.user_id = #{userId}
+    </select>
+
+    <select id="OnlineAlgorithm" resultType="Integer">
+        SELECT count(*) FROM `aievent`
+    </select>
+
+    <select id="MostAlarmed" resultType="String">
+        SELECT t1.AIevent_name
+        FROM aievent t1
+        WHERE AIevent_id in (
+            SELECT t2.*
+            FROM(
+            SELECT AIevent_name
+            FROM aieventmessage t1 , user_project t2
+            WHERE
+              t1.project_id = t2 . project_id
+            AND t2.user_id = #{userId}
+            GROUP BY AIevent_name
+            ORDER BY count(AIevent_name)
+            DESC limit 1 )as t2)
+    </select>
+
+    <select id="todayAlarmed" resultType="Integer">
+        SELECT count(*)
+        FROM aieventmessage t1,user_project t2
+        WHERE to_days(time) = to_days(now())
+        AND t1.project_id = t2 . project_id
+        AND t2.user_id = #{userId}
+    </select>
+
+</mapper>

@@ -1,0 +1,234 @@
+[INFO][22-32-06][com.example.equipmentmanagementspring.controller.LoginController]/ai/login
+[WARN][22-32-06][com.example.equipmentmanagementspring.controller.LoginController]login: userNotFound!
+[INFO][22-24-07][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList
+[INFO][22-54-07][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList
+[INFO][22-56-07][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList
+[INFO][22-57-07][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList
+[INFO][22-59-07][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList
+[INFO][22-02-07][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList
+[DEBUG][22-02-07][com.example.equipmentmanagementspring.controller.UserController]{total=0, userList=[]}
+[INFO][22-03-07][com.example.equipmentmanagementspring.controller.LoginController]/login
+[WARN][22-03-07][com.example.equipmentmanagementspring.controller.LoginController]login: userNotFound!
+[INFO][22-03-07][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList
+[DEBUG][22-03-07][com.example.equipmentmanagementspring.controller.UserController]{total=0, userList=[]}
+[INFO][22-07-07][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=10, currentPage=1)
+[DEBUG][22-07-07][com.example.equipmentmanagementspring.controller.UserController]{total=0, userList=[]}
+[INFO][22-51-08][com.example.equipmentmanagementspring.controller.UserController]/user/addUser
+[INFO][22-51-08][com.example.equipmentmanagementspring.controller.LoginController]/login
+[INFO][22-54-08][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=10, currentPage=1)
+[INFO][22-22-08][com.example.equipmentmanagementspring.controller.UserController]/user/updateUser
+[INFO][22-31-08][com.example.equipmentmanagementspring.controller.UserController]/user/deleteUser
+[INFO][22-09-08][com.example.equipmentmanagementspring.controller.ProjectController]/project/addProject
+[INFO][22-31-08][com.example.equipmentmanagementspring.controller.ProjectController]/project/updateProject
+[INFO][22-53-09][com.example.equipmentmanagementspring.controller.ProjectController]/project/updateProject
+[INFO][22-10-09][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-13-09][com.example.equipmentmanagementspring.controller.UserController]/user/addUser
+[INFO][22-13-09][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[DEBUG][22-13-09][com.example.equipmentmanagementspring.controller.ProjectController]
+[INFO][22-16-09][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[DEBUG][22-16-09][com.example.equipmentmanagementspring.controller.ProjectController]
+[INFO][22-24-09][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[DEBUG][22-24-09][com.example.equipmentmanagementspring.controller.ProjectController]
+[INFO][22-26-09][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[DEBUG][22-26-09][com.example.equipmentmanagementspring.controller.ProjectController]java.lang.NullPointerException
+[INFO][22-29-09][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[DEBUG][22-29-09][com.example.equipmentmanagementspring.controller.ProjectController]java.lang.NullPointerException
+[INFO][22-35-09][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[INFO][22-39-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/authorizeProject
+[INFO][22-39-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/authorizeProject
+[DEBUG][22-39-09][com.example.equipmentmanagementspring.controller.UserProjectController]authorization already existed
+[INFO][22-41-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/getAuthorizedProject
+[INFO][22-42-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/getAuthorizedUser
+[INFO][22-44-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/revokeAuthorization
+[INFO][22-46-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/authorizeProject
+[INFO][22-46-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/revokeAuthorization
+[INFO][22-47-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/revokeAuthorization
+[INFO][22-51-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/revokeAuthorization
+[DEBUG][22-51-09][com.example.equipmentmanagementspring.controller.UserProjectController]authorization not found
+[INFO][22-51-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/revokeAuthorization
+[DEBUG][22-51-09][com.example.equipmentmanagementspring.controller.UserProjectController]project not found
+[INFO][22-52-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/revokeAuthorization
+[DEBUG][22-52-09][com.example.equipmentmanagementspring.controller.UserProjectController]authorization not found
+[INFO][22-52-09][com.example.equipmentmanagementspring.controller.ProjectController]/project/deleteProject
+[INFO][22-54-09][com.example.equipmentmanagementspring.controller.ProjectController]/project/addProject
+[INFO][22-54-09][com.example.equipmentmanagementspring.controller.ProjectController]/project/updateProject
+[INFO][22-55-09][com.example.equipmentmanagementspring.controller.ProjectController]/project/updateProject
+[INFO][22-55-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/authorizeProject
+[INFO][22-56-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/getAuthorizedUser
+[INFO][22-56-09][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[INFO][22-56-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/getAuthorizedProject
+[INFO][22-56-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/getAuthorizedUser
+[INFO][22-56-09][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-56-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/revokeAuthorization
+[INFO][22-56-09][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/authorizeProject
+[INFO][22-52-09][com.example.equipmentmanagementspring.controller.LoginController]/login
+[INFO][22-52-09][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=10, currentPage=1)
+[INFO][22-21-22][com.example.equipmentmanagementspring.controller.UserController]/user/addUser
+[INFO][22-21-22][com.example.equipmentmanagementspring.controller.UserController]/user/addUser
+[INFO][22-21-22][com.example.equipmentmanagementspring.controller.UserController]/user/addUser
+[INFO][22-22-22][com.example.equipmentmanagementspring.controller.UserController]/user/addUser
+[INFO][22-22-22][com.example.equipmentmanagementspring.controller.UserController]/user/addUser
+[INFO][22-23-22][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=10, currentPage=1, inputKey=zhang, selectRoleId=[1, 2])
+[INFO][22-32-22][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=10, currentPage=1, inputKey=zhang, selectRoleId=[1, 2])
+[INFO][22-36-22][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=10, currentPage=1, inputKey=zhang, selectRoleId=[1, 2])
+[INFO][22-06-22][com.example.equipmentmanagementspring.controller.ProjectController]/project/addProject
+[INFO][22-06-22][com.example.equipmentmanagementspring.controller.ProjectController]/project/addProject
+[INFO][22-08-22][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[INFO][22-18-22][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[DEBUG][22-18-22][com.example.equipmentmanagementspring.controller.ProjectController]user not found
+[INFO][22-18-22][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[INFO][22-19-22][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[INFO][22-21-22][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[INFO][22-21-22][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[INFO][22-51-22][com.example.equipmentmanagementspring.controller.ProjectController]/project/getEmployerAndContractor
+[INFO][22-52-22][com.example.equipmentmanagementspring.controller.ProjectController]/project/addProject
+[INFO][22-52-22][com.example.equipmentmanagementspring.controller.ProjectController]/project/getEmployerAndContractor
+[INFO][22-38-23][com.example.equipmentmanagementspring.controller.UserController]/user/getUnauthProjectUser
+[INFO][22-40-23][com.example.equipmentmanagementspring.controller.UserController]/user/getUnauthProjectUser
+[DEBUG][22-40-23][com.example.equipmentmanagementspring.controller.UserController]project not found
+[INFO][22-41-23][com.example.equipmentmanagementspring.controller.UserController]/user/getUnauthProjectUser
+[DEBUG][22-41-23][com.example.equipmentmanagementspring.controller.UserController]project not found
+[INFO][22-42-23][com.example.equipmentmanagementspring.controller.UserController]/user/getUnauthProjectUser
+[DEBUG][22-42-23][com.example.equipmentmanagementspring.controller.UserController]project not found
+[INFO][22-42-23][com.example.equipmentmanagementspring.controller.UserController]/user/getUnauthProjectUser
+[DEBUG][22-42-23][com.example.equipmentmanagementspring.controller.UserController]project not found
+[INFO][22-45-23][com.example.equipmentmanagementspring.controller.UserController]/user/getUnauthProjectUser
+[INFO][22-49-23][com.example.equipmentmanagementspring.controller.UserController]/user/getUnauthProjectUser
+[INFO][22-37-17][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/updateAuthorization
+[DEBUG][22-37-17][com.example.equipmentmanagementspring.controller.UserProjectController]参数错误
+[INFO][22-38-17][com.example.equipmentmanagementspring.controller.UserProjectController]/userProject/updateAuthorization
+[DEBUG][22-38-17][com.example.equipmentmanagementspring.controller.UserProjectController]project not found
+[INFO][22-16-20][com.example.equipmentmanagementspring.controller.LoginController]/login
+[INFO][22-16-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-18-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-19-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-20-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-20-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-20-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-20-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-20-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-20-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-20-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-21-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-22-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-22-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-23-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-23-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-23-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-25-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-25-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-25-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-25-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-25-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-25-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-25-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-26-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-26-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-26-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-26-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-26-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-26-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-26-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-26-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-27-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-27-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-27-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-27-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-27-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-27-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-28-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-28-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-28-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-28-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-37-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-37-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-38-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-38-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-28-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-28-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-28-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[DEBUG][22-28-20][com.example.equipmentmanagementspring.controller.ProjectController]
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'longitude' in 'field list'
+### The error may exist in com/example/equipmentmanagementspring/mapper/ProjectMapper.java (best guess)
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT  project_id,project_name,project_employer,project_contractor,user_id,project_address,longitude,latitude  FROM project LIMIT ?
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'longitude' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'longitude' in 'field list'
+[INFO][22-28-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getEmployerAndContractor
+[INFO][22-34-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[DEBUG][22-34-20][com.example.equipmentmanagementspring.controller.ProjectController]
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'longitude' in 'field list'
+### The error may exist in com/example/equipmentmanagementspring/mapper/ProjectMapper.java (best guess)
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT  project_id,project_name,project_employer,project_contractor,user_id,project_address,longitude,latitude  FROM project LIMIT ?
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'longitude' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'longitude' in 'field list'
+[INFO][22-34-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getEmployerAndContractor
+[INFO][22-37-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[DEBUG][22-37-20][com.example.equipmentmanagementspring.controller.ProjectController]
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'longitude' in 'field list'
+### The error may exist in com/example/equipmentmanagementspring/mapper/ProjectMapper.java (best guess)
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT  project_id,project_name,project_employer,project_contractor,user_id,project_address,longitude,latitude  FROM project LIMIT ?
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'longitude' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'longitude' in 'field list'
+[INFO][22-37-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getEmployerAndContractor
+[INFO][22-37-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-37-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-38-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[DEBUG][22-38-20][com.example.equipmentmanagementspring.controller.ProjectController]
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'longitude' in 'field list'
+### The error may exist in com/example/equipmentmanagementspring/mapper/ProjectMapper.java (best guess)
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT  project_id,project_name,project_employer,project_contractor,user_id,project_address,longitude,latitude  FROM project LIMIT ?
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'longitude' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'longitude' in 'field list'
+[INFO][22-38-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getEmployerAndContractor
+[INFO][22-43-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[INFO][22-43-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getEmployerAndContractor
+[INFO][22-43-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[INFO][22-43-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getEmployerAndContractor
+[INFO][22-43-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-43-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-43-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-43-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-43-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[INFO][22-43-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getEmployerAndContractor
+[INFO][22-44-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getProjectList
+[INFO][22-44-20][com.example.equipmentmanagementspring.controller.ProjectController]/project/getEmployerAndContractor
+[INFO][22-44-20][com.example.equipmentmanagementspring.controller.UserController]/user/getUserList:UserRequestBody.GetUserListReq(pageSize=6, currentPage=1, inputKey=, selectRoleId=null)
+[INFO][22-44-20][com.example.equipmentmanagementspring.controller.RoleController]/role/getAllRole
+[INFO][22-53-28][com.example.equipmentmanagementspring.controller.LoginController]/login
+[ERROR][22-53-28][com.example.equipmentmanagementspring.controller.LoginController]login：nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLSyntaxErrorException: Unknown database ':3306/ai_db'
+### The error may exist in com/example/equipmentmanagementspring/mapper/UserMapper.java (best guess)
+### The error may involve com.example.equipmentmanagementspring.mapper.UserMapper.selectList
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLSyntaxErrorException: Unknown database ':3306/ai_db'
+[INFO][22-54-28][com.example.equipmentmanagementspring.controller.LoginController]/login
+[INFO][22-54-28][com.example.equipmentmanagementspring.controller.UserController]/user/verifyPassword
+[INFO][22-54-28][com.example.equipmentmanagementspring.controller.UserController]/user/changePassword
+[DEBUG][22-54-28][com.example.equipmentmanagementspring.controller.UserController]user not found
+[INFO][22-55-28][com.example.equipmentmanagementspring.controller.LoginController]/login
+[INFO][22-55-28][com.example.equipmentmanagementspring.controller.UserController]/user/changePassword
+[DEBUG][22-55-28][com.example.equipmentmanagementspring.controller.UserController]user not found
+[INFO][22-58-28][com.example.equipmentmanagementspring.controller.LoginController]/login
+[INFO][22-59-28][com.example.equipmentmanagementspring.controller.UserController]/user/verifyPassword
+[INFO][22-59-28][com.example.equipmentmanagementspring.controller.UserController]/user/changePassword
+[INFO][22-59-28][com.example.equipmentmanagementspring.controller.LoginController]/login
+[INFO][22-53-30][com.example.equipmentmanagementspring.controller.LoginController]/login
+[INFO][22-53-30][com.example.equipmentmanagementspring.controller.LoginController]/login
+[ERROR][22-53-30][com.example.equipmentmanagementspring.controller.LoginController]login：nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30467ms.
+### The error may exist in com/example/equipmentmanagementspring/mapper/UserMapper.java (best guess)
+### The error may involve com.example.equipmentmanagementspring.mapper.UserMapper.selectList
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30467ms.
+[INFO][22-54-30][com.example.equipmentmanagementspring.controller.LoginController]/login
+[INFO][22-02-30][com.example.equipmentmanagementspring.controller.LoginController]/login
+[WARN][22-02-30][com.example.equipmentmanagementspring.controller.LoginController]login: passwordError!
+[INFO][22-17-30][com.example.equipmentmanagementspring.controller.LoginController]/login

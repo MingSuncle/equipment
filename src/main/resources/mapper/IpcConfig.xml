@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.equipmentmanagementspring.mapper.IpcConfigDao">
+    <select id="SelectIpcId" resultType="String">
+        select DISTINCT `ipc_id` from `ipc_config` WHERE `ipc_box_no` = #{boxNo}
+    </select>
+
+    <select id="SelectIpcConfig" resultType="com.example.equipmentmanagementspring.entity.IpcConfigEntity">
+        select * from `ipc_config`
+        WHERE
+        `ipc_id` = #{IpcId}
+        ORDER BY `state` ASC
+    </select>
+
+
+    <delete id="deleteIpcConfig">
+        delete from `ipc_config` WHERE `ipc_id` = #{IpcNo} AND `state` =#{state}
+    </delete>
+    
+    <select id="getIpcConfigListNum" resultType="Integer">
+        select count(*) from `ipc_config` `t1`
+        WHERE
+        `t1`.`ipc_box_no` = #{ipcBoxNo} AND `t1`.`state` in ("0","2")
+    </select>
+
+    <select id="getIpcConfigList" resultType="com.example.equipmentmanagementspring.entity.IpcConfigEntity">
+        select `t1`.* from `ipc_config` `t1`
+        WHERE
+        `t1`.`ipc_box_no` = #{ipcBoxNo} AND `t1`.`state` in ("0","2")
+        <if test="currentPage != null and pageSize!= null">
+            limit
+            #{currentPage},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getIpcConfigListByName" resultType="com.example.equipmentmanagementspring.entity.IpcConfigEntity">
+        select `t1`.* from `ipc_config` `t1`
+        WHERE
+        `t1`.`ipc_box_no` = #{ipcBoxNo} AND `t1`.`state` in ("0","2") AND `t1`.`ipc_name` like CONCAT(CONCAT('%',#{ipcName},'%'))
+        <if test="currentPage != null and pageSize!= null">
+            limit
+            #{currentPage},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getIpcConfigListNumByName" resultType="Integer">
+        select count(*) from `ipc_config` `t1`
+        WHERE
+        `t1`.`ipc_box_no` = #{ipcBoxNo} AND `t1`.`state` in ("0","2") AND `ipc_name` like CONCAT(CONCAT('%',#{ipcName},'%'))
+    </select>
+
+    <select id="getIpcConfig" resultType="com.example.equipmentmanagementspring.entity.IpcConfigEntity">
+        select * from `ipc_config`
+        WHERE
+        `ipc_id` = #{IpcId} AND `state` = #{state}
+    </select>
+</mapper>

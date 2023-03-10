@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.equipmentmanagementspring.mapper.AIInformationDao">
+    <select id="queryAIInformationList" resultType="com.example.equipmentmanagementspring.entity.AIInformationEntity">
+         select * from `aieventmessage` ORDER BY `state` asc,`message_id` asc
+    </select>
+
+    <select id="queryAIInformationListByProId" resultType="com.example.equipmentmanagementspring.entity.AIInformationEntity">
+    select * from `aieventmessage` where `project_id` = #{proId} ORDER BY `state` asc
+    </select>
+
+    <select id="queryUnconfirmedAIInformationList" parameterType="java.util.List" resultType="com.example.equipmentmanagementspring.entity.AIInformationEntity">
+        select * from `aieventmessage`
+        <where>
+            <if test="state != null">
+                `state` = #{state}
+            </if>
+
+            <if test="proId != null">
+                AND `project_id` in
+                <foreach item="id" collection="proId"  open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </if>
+            <if test="type != null and type.size() > 0">
+                AND `AIevent_name` in
+                <foreach item="ty" collection="type"  open="(" separator="," close=")">
+                    #{ty}
+                </foreach>
+            </if>
+            <if test="beginTime != null and beginTime!='' ">
+                AND `time` <![CDATA[ > ]]> #{beginTime}
+            </if>
+            <if test="endTime != null and endTime!=''">
+                AND `time` <![CDATA[ < ]]>   #{endTime}
+            </if>
+
+        </where>
+        ORDER BY `state` asc
+
+        <if test="currentPage != null and pageSize!= null">
+            limit
+            #{currentPage},#{pageSize}
+        </if>
+    </select>
+
+    <select id="UnconfirmedAIInformationNum" parameterType="java.util.List" resultType="Integer">
+        select COUNT(*) from `aieventmessage`
+        <where>
+            <if test="state != null">
+                `state` = #{state}
+            </if>
+
+            <if test="proId != null">
+                AND `project_id` in
+                <foreach item="id" collection="proId"  open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </if>
+            <if test="type != null and type.size() > 0">
+                AND `AIevent_name` in
+                <foreach item="ty" collection="type"  open="(" separator="," close=")">
+                    #{ty}
+                </foreach>
+            </if>
+            <if test="beginTime != null and beginTime!='' ">
+                AND `time` <![CDATA[ > ]]> #{beginTime}
+            </if>
+            <if test="endTime != null and endTime!=''">
+                AND `time` <![CDATA[ < ]]>   #{endTime}
+            </if>
+
+        </where>
+
+    </select>
+
+    <select id="AIInformationNumByIdState" resultType="Long">
+        select COUNT(*)
+        from `aieventmessage` `t1`,`user_project` `t2`
+		where
+		`t2`.`user_id`=#{usrId} AND `t1`.`project_id`=`t2`.`project_id` AND `t1`.state=#{state}
+    </select>
+
+    <select id="AIInformationByIdState" resultType="com.example.equipmentmanagementspring.entity.AIInformationEntity">
+        select *
+        from `aieventmessage` `t1`,`user_project` `t2`
+		where
+		`t2`.`user_id`=#{usrId} AND `t1`.`project_id`=`t2`.`project_id` AND `t1`.state=#{state}
+        <if test="currentPage != null and pageSize!= null">
+            limit
+            #{currentPage},#{pageSize}
+        </if>
+    </select>
+
+
+</mapper>
