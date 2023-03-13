@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.equipmentmanagementspring.box.entity.BoxInformationEntity;
 import com.example.equipmentmanagementspring.box.service.BoxInformationService;
 import com.example.equipmentmanagementspring.box.utils.FileDes;
+import com.example.equipmentmanagementspring.entity.BoxConfigEntity;
 import com.example.equipmentmanagementspring.service.BoxConfigService;
 import com.example.equipmentmanagementspring.utils.R;
 import com.github.jeffreyning.mybatisplus.conf.EnableMPP;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.List;
 
 
 @Api(tags = "盒子")
@@ -59,11 +61,11 @@ public class BoxInformationController {
         //算法加密
         BoxInformationEntity box = boxInformationService.getById(boxId);
         FileDes fileDes = new FileDes(boxId);
-        fileDes.decrypt("D:\\Zhaozian\\Project\\equipment\\src\\main\\数据库实体设计说明书.doc", "D:\\Zhaozian\\Project\\equipment\\src\\main\\数据库实体设计说明书dec.doc");
-
+//        fileDes.decrypt("D:\\Zhaozian\\Project\\equipment\\src\\main\\数据库实体设计说明书.doc", "D:\\Zhaozian\\Project\\equipment\\src\\main\\数据库实体设计说明书dec.doc");
+        fileDes.decrypt("/root/javaWorkspace/数据库实体设计说明书.doc", "/root/javaWorkspace/数据库实体设计说明书dec.doc");
         try {
-            String path = "D:\\Zhaozian\\Project\\equipment\\src\\main\\数据库实体设计说明书dec.doc";
-//            String path = "D:/学习笔记/研究生/antiepidemic/src/excelTemplate/staffTemplate.xlsx";
+//            String path = "D:\\Zhaozian\\Project\\equipment\\src\\main\\数据库实体设计说明书dec.doc";
+            String path = "/root/javaWorkspace/数据库实体设计说明书dec.doc";
             // path是指想要下载的文件的路径
             File file = new File(path);
             System.out.println(file.getPath());
@@ -110,8 +112,21 @@ public class BoxInformationController {
         Object channelLimitObj =object.get("channelLimit");
         Integer channelLimit = Integer.parseInt(String.valueOf(channelLimitObj));
         String eventList = (String)object.get("eventList");
-        System.out.println(channelLimit);
-        System.out.println(eventList);
+//        String expireTime = (String)object.get("expiration_date");       该字段目前无用
+        String boxId = (String)object.get("box_id");
+        String boxIp = (String)object.get("box_ip");
+        String boxName = (String)object.get("box_name");
+        BoxConfigEntity bce = new BoxConfigEntity();
+        bce.setBoxNo(boxId);
+        bce.setState(2);
+        bce.setBoxIp(boxIp);
+        bce.setBoxName(boxName);
+        boxConfigService.saveOrUpdateByMultiId(bce);
+        List<JSONObject> channel_list = (List<JSONObject>)object.get("channel_list");
+        for(JSONObject channel:channel_list){
+            String channelId = (String)channel.get("channel_id");
+
+    }
         return r;
     }
 }

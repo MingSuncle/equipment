@@ -1,0 +1,72 @@
+{
+	"channelLimit":	16,
+	"eventList":	"1,2,4",
+	"expiration_date":	"2024-03-03",
+	
+	"box_id":	"AIBOXHNU0004TEST",
+	"box_ip":	"128.0.0.1",
+	"box_name":	"接口测试盒",
+	"channel_list":	[{
+			"channel_id":	1,
+			"channel_name":	"111_人员脱岗",
+			"AIevent_id":	14,
+			"AIevent_name":	"人员脱岗",
+			
+			"video_fps":	0,
+			"video_id":	"VIDEOTEST0001A",
+			"video_name":	"测试摄像头1号接口测试",
+			"video_position":	"实验室",
+			"video_brand":	"TP_LINK",
+			"video_ip":	"192.168.150.74",
+			"video_username":	"admin",
+			"video_password":	"123456",
+			"video_port":	"554",
+			"video_stream":	"主码流",
+
+		
+			"detect_area_list":	[{
+					"detect_time_List":	[["05:30", "10:00"], ["13:30", "14:00"]],
+					"area_name":	"区域",
+					"AIevent_level":	0,
+					"AIevent_processmode":	0,
+					"AIevent_processparam":	{
+						"test" : 1
+					},
+					"detect_area_scope":	[[734.4, 332.64], [1095.12, 289.44], [1069.2, 648], [725.76, 751.68], [723.6, 453.6], [734.4, 332.64]]
+				}, {
+					"detect_time_List":	[["04:30", "12:00"]],
+					"area_name":	"12",
+					"AIevent_level":	0,
+					"AIevent_processmode":	2,
+					"AIevent_processparam":	0,
+					"detect_area_scope":	[[628.56, 224.64], [885.6, 280.8], [913.68, 537.84], [619.92, 712.8], [334.8, 581.04], [414.72, 354.24], [518.4, 237.6], [628.56, 224.64]]
+				}]
+		}, {
+			"channel_id":	2,
+			"channel_name":	"102_入侵检测",
+			"video_fps":	0,
+			"video_id":	"VIDEOTEST0002A",
+			"video_name":	"测试摄像头2号接口测试",
+			"video_position":	"实验室2",
+			"video_brand":	"TP_LINK",
+			"video_ip":	"192.168.150.170",
+			"video_username":	"admin",
+			"video_password":	"123456",
+			"video_port":	"554",
+			"video_stream":	"主码流",
+			"channel_using":	"0",
+			"state":	1,
+			"AIevent_id":	16,
+			"AIevent_name":	"入侵检测",
+			"detect_area_list":	[{
+					"detect_time_List":	[["06:30", "13:00"]],
+					"area_name":	"区域3",
+					"AIevent_level":	1,
+					"AIevent_processmode":	1,
+					"AIevent_processparam":		{
+						"test" : 1
+					},
+					"detect_area_scope":	[[820.8, 263.52], [1226.88, 324], [1168.56, 673.92], [786.24, 721.44], [613.44, 440.64], [820.8, 263.52]]
+				}]
+		}]
+}
