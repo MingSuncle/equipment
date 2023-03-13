@@ -1,6 +1,8 @@
 package com.example.equipmentmanagementspring.box.controller;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.equipmentmanagementspring.box.entity.BoxInformationEntity;
 import com.example.equipmentmanagementspring.box.service.BoxInformationService;
 import com.example.equipmentmanagementspring.box.utils.FileDes;
@@ -10,10 +12,7 @@ import com.github.jeffreyning.mybatisplus.conf.EnableMPP;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -34,6 +33,8 @@ public class BoxInformationController {
         this.boxConfigService = boxConfigService;
     }
 
+
+//    返回通道数和事件idList
     @ApiOperation("激活盒子")
     @PostMapping ("/registerBox")
     public R activateBox(@RequestParam(value = "box_id") String boxId) {
@@ -100,4 +101,17 @@ public class BoxInformationController {
         }
     }
 
+    @ApiOperation("盒子上传json，服务器解析")
+    @PostMapping("/uploadConfig")
+    public R uploadConfig(@RequestBody String json)
+    {
+        R r = R.ok();
+        JSONObject object = JSON.parseObject(json.toString());
+        Object channelLimitObj =object.get("channelLimit");
+        Integer channelLimit = Integer.parseInt(String.valueOf(channelLimitObj));
+        String eventList = (String)object.get("eventList");
+        System.out.println(channelLimit);
+        System.out.println(eventList);
+        return r;
+    }
 }

@@ -19,11 +19,14 @@ public class BoxInformationServiceImpl extends
     public Integer boxState(String boxId) {
         BoxInformationEntity box = baseMapper.selectById(boxId);
         if (box == null) {
+            //盒子不存在返回0
             return 0;
         } else {
             if (box.getBoxState() == 0) {
+                //盒子未激活
                 return 1;
             } else {
+                //其他情况
                 return 2;
             }
 
@@ -36,11 +39,15 @@ public class BoxInformationServiceImpl extends
     public Integer activateBox(String boxId) {
         System.out.print(boxState(boxId));
         if (boxState(boxId) == 1) {
+            //盒子未激活
             boolean flag = baseMapper.activateBox(boxId);
+            //激活成功后返回200
             return 200;
         } else if (boxState(boxId) == 2) {
+            //其他情况
             return 201;
         }
+        //盒子不在数据库中
         return 404;
     }
 }
