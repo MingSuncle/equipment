@@ -54,5 +54,8 @@ public class IpcConfigEntity implements Serializable{
         @TableField(value = "ipc_detect_time_v2")
         private String ipcTime;
 
+        @TableField(value = "ipc_brand")
+        private String ipcBrand;
+
 
     }

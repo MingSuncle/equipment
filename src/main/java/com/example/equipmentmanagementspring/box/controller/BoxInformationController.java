@@ -7,13 +7,18 @@ import com.example.equipmentmanagementspring.box.entity.BoxInformationEntity;
 import com.example.equipmentmanagementspring.box.service.BoxInformationService;
 import com.example.equipmentmanagementspring.box.utils.FileDes;
 import com.example.equipmentmanagementspring.entity.BoxConfigEntity;
+import com.example.equipmentmanagementspring.entity.ChannelEntity;
+import com.example.equipmentmanagementspring.entity.IpcConfigEntity;
 import com.example.equipmentmanagementspring.service.BoxConfigService;
+import com.example.equipmentmanagementspring.service.ChannelService;
+import com.example.equipmentmanagementspring.service.IpcConfigService;
 import com.example.equipmentmanagementspring.utils.R;
 import com.github.jeffreyning.mybatisplus.conf.EnableMPP;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.CEFormatException;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -30,9 +35,14 @@ public class BoxInformationController {
     private final BoxInformationService boxInformationService;
     private final BoxConfigService boxConfigService;
 
-    public BoxInformationController(BoxInformationService boxInformationService, BoxConfigService boxConfigService) {
+    private final IpcConfigService ipcConfigService;
+    private final ChannelService channelService;
+
+    public BoxInformationController(BoxInformationService boxInformationService, BoxConfigService boxConfigService, IpcConfigService ipcConfigService, ChannelService channelService) {
         this.boxInformationService = boxInformationService;
         this.boxConfigService = boxConfigService;
+        this.ipcConfigService = ipcConfigService;
+        this.channelService = channelService;
     }
 
 
@@ -61,11 +71,13 @@ public class BoxInformationController {
         //算法加密
         BoxInformationEntity box = boxInformationService.getById(boxId);
         FileDes fileDes = new FileDes(boxId);
-//        fileDes.decrypt("D:\\Zhaozian\\Project\\equipment\\src\\main\\数据库实体设计说明书.doc", "D:\\Zhaozian\\Project\\equipment\\src\\main\\数据库实体设计说明书dec.doc");
-        fileDes.decrypt("/root/javaWorkspace/数据库实体设计说明书.doc", "/root/javaWorkspace/数据库实体设计说明书dec.doc");
-        try {
+//        fileDes.encrypt("D:\\Zhaozian\\Project\\equipment\\src\\main\\数据库实体设计说明书.doc", "D:\\Zhaozian\\Project\\equipment\\src\\main\\数据库实体设计说明书dec.doc");
+        fileDes.encrypt("/root/javaWorkspace/数据库实体设计说明书.doc", "/root/javaWorkspace/数据库实体设计说明书dec.doc");
+//        fileDes.decrypt("D:\\Zhaozian\\Project\\equipment\\src\\main\\数据库实体设计说明书dec.doc", "D:\\Zhaozian\\Project\\equipment\\src\\main\\数据库实体设计说明书解密.doc");
+        fileDes.decrypt("/root/javaWorkspace/数据库实体设计说明书dec.doc", "/root/javaWorkspace/数据库实体设计说明书解密.doc");
 //            String path = "D:\\Zhaozian\\Project\\equipment\\src\\main\\数据库实体设计说明书dec.doc";
-            String path = "/root/javaWorkspace/数据库实体设计说明书dec.doc";
+        try{
+        String path = "/root/javaWorkspace/数据库实体设计说明书dec.doc";
             // path是指想要下载的文件的路径
             File file = new File(path);
             System.out.println(file.getPath());
@@ -124,7 +136,38 @@ public class BoxInformationController {
         boxConfigService.saveOrUpdateByMultiId(bce);
         List<JSONObject> channel_list = (List<JSONObject>)object.get("channel_list");
         for(JSONObject channel:channel_list){
-            String channelId = (String)channel.get("channel_id");
+            Integer channelId = (Integer) channel.get("channel_id");
+            String channelName = (String)channel.get("channel_name");
+            Integer AIeventId = (Integer) channel.get("AIevent_id");
+//            Object fpsObject = channel.get("video_fps");
+//            Double videoFps = Double.parseDouble(String.valueOf(fpsObject));
+            Integer videoFps = (Integer) channel.get("video_fps");
+            String videoName = (String)channel.get("video_name");
+            String videoId = (String)channel.get("video_id");
+            String videoPosition = (String)channel.get("video_position");
+            String videoBrand = (String)channel.get("video_brand");
+            String videoIp = (String)channel.get("video_ip");
+            String videoPort = (String)channel.get("video_port");
+            String videoStream = (String)channel.get("video_stream");
+            IpcConfigEntity ipc = new IpcConfigEntity();
+            ipc.setIpcId(videoId);
+            ipc.setIpcIp(videoIp);
+            ipc.setIpcName(videoName);
+            ipc.setIpcposition(videoPosition);
+//            ipc.setIpcFps(videoFps);
+            ipc.setIpcBrand(videoBrand);
+            ipc.setState(2);
+            ipcConfigService.saveOrUpdateByMultiId(ipc);
+            ChannelEntity channelEntity = new ChannelEntity();
+            channelEntity.setBoxId(boxId);
+            channelEntity.setChannelId(channelId);
+            channelEntity.setChannelName(channelName);
+            channelEntity.setVideoFps(videoFps);
+            channelEntity.setVideoId(videoId);
+            channelEntity.setEventId(AIeventId);
+            channelEntity.setVideoPort(videoPort);
+            channelEntity.setVideoStream(videoStream);
+            channelService.saveOrUpdateByMultiId(channelEntity);
 
     }
         return r;

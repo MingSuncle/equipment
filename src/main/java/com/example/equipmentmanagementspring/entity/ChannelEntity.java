@@ -4,6 +4,7 @@ package com.example.equipmentmanagementspring.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
+import io.swagger.models.auth.In;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -16,7 +17,7 @@ public class ChannelEntity implements Serializable {
 
     @MppMultiId
     @TableField(value = "channel_id")
-    private String channelId;
+    private Integer channelId;
 
     @MppMultiId
     @TableField(value = "box_id")
@@ -33,7 +34,7 @@ public class ChannelEntity implements Serializable {
     private Integer eventId;
 
     @TableField(value = "video_fps")
-    private Double videoFps;
+    private Integer videoFps;
 
     @TableField(value = "video_port")
     private String videoPort;
