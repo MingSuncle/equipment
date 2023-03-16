@@ -118,4 +118,14 @@ public class BoxConfigController {
     r.addData("result", result);
     return r;
   }
+
+  @GetMapping("/getAll")
+  public R getAll(){
+    R r = R.ok();
+    List<BoxConfigEntity> result = boxConfigService.getAll();
+    Integer total = boxConfigService.allNum();
+    r.addData("result",result);
+    r.addData("total",total);
+    return r;
+  }
 }

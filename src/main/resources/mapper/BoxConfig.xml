@@ -50,4 +50,14 @@
         WHERE
         `box_no` = #{boxId} AND `state` = #{state}
     </select>
+
+    <select id="getAll" resultType="com.example.equipmentmanagementspring.entity.BoxConfigEntity">
+        select * from `box_config`
+        WHERE `state` = 2
+    </select>
+
+    <select id="allNum" resultType="Integer">
+        select count(*) from `box_config`
+        WHERE `state` = 2
+    </select>
 </mapper>

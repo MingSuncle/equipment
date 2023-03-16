@@ -59,4 +59,7 @@ public interface BoxConfigService extends IMppService<BoxConfigEntity> {
      */
     BoxConfigEntity getBoxConfig(String boxId,Integer state);
 
+    List<BoxConfigEntity> getAll();
+
+    Integer allNum();
 }

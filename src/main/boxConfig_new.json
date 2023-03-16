@@ -25,6 +25,7 @@
 
 		
 			"detect_area_list":	[{
+					"area_id": 1,
 					"detect_time_List":	[["05:30", "10:00"], ["13:30", "14:00"]],
 					"area_name":	"区域",
 					"AIevent_level":	0,
@@ -34,6 +35,7 @@
 					},
 					"detect_area_scope":	[[734.4, 332.64], [1095.12, 289.44], [1069.2, 648], [725.76, 751.68], [723.6, 453.6], [734.4, 332.64]]
 				}, {
+					"area_id": 2,
 					"detect_time_List":	[["04:30", "12:00"]],
 					"area_name":	"12",
 					"AIevent_level":	0,
@@ -59,6 +61,7 @@
 			"AIevent_id":	16,
 			"AIevent_name":	"入侵检测",
 			"detect_area_list":	[{
+				    "area_id": 2,
 					"detect_time_List":	[["06:30", "13:00"]],
 					"area_name":	"区域3",
 					"AIevent_level":	1,

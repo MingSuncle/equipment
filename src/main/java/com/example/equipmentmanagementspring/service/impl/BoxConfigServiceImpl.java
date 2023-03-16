@@ -54,5 +54,15 @@ public class BoxConfigServiceImpl extends
         return baseMapper.getBoxConfig(boxId, state);
     }
 
+    @Override
+    public List<BoxConfigEntity> getAll() {
+        return baseMapper.getAll();
+    }
+
+    @Override
+    public Integer allNum() {
+        return baseMapper.allNum();
+    }
+
 
 }

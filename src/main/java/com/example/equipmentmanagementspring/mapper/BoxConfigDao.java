@@ -66,4 +66,8 @@ public interface BoxConfigDao extends MppBaseMapper<BoxConfigEntity> {
      * @return BoxList
      */
     List<BoxConfigEntity> SelectBoxConfig(String boxNo);
+
+    List<BoxConfigEntity> getAll();
+
+    Integer allNum();
 }

@@ -6,9 +6,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.equipmentmanagementspring.box.entity.BoxInformationEntity;
 import com.example.equipmentmanagementspring.box.service.BoxInformationService;
 import com.example.equipmentmanagementspring.box.utils.FileDes;
+import com.example.equipmentmanagementspring.entity.AreaEntity;
 import com.example.equipmentmanagementspring.entity.BoxConfigEntity;
 import com.example.equipmentmanagementspring.entity.ChannelEntity;
 import com.example.equipmentmanagementspring.entity.IpcConfigEntity;
+import com.example.equipmentmanagementspring.service.AreaService;
 import com.example.equipmentmanagementspring.service.BoxConfigService;
 import com.example.equipmentmanagementspring.service.ChannelService;
 import com.example.equipmentmanagementspring.service.IpcConfigService;
@@ -18,7 +20,6 @@ import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
-import sun.misc.CEFormatException;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -38,11 +39,14 @@ public class BoxInformationController {
     private final IpcConfigService ipcConfigService;
     private final ChannelService channelService;
 
-    public BoxInformationController(BoxInformationService boxInformationService, BoxConfigService boxConfigService, IpcConfigService ipcConfigService, ChannelService channelService) {
+    private final AreaService areaService;
+
+    public BoxInformationController(BoxInformationService boxInformationService, BoxConfigService boxConfigService, IpcConfigService ipcConfigService, ChannelService channelService, AreaService areaService) {
         this.boxInformationService = boxInformationService;
         this.boxConfigService = boxConfigService;
         this.ipcConfigService = ipcConfigService;
         this.channelService = channelService;
+        this.areaService = areaService;
     }
 
 
@@ -144,7 +148,7 @@ public class BoxInformationController {
             Integer videoFps = (Integer) channel.get("video_fps");
             String videoName = (String)channel.get("video_name");
             String videoId = (String)channel.get("video_id");
-            String videoPosition = (String)channel.get("video_position");
+//            String videoPosition = (String)channel.get("video_position");
             String videoBrand = (String)channel.get("video_brand");
             String videoIp = (String)channel.get("video_ip");
             String videoPort = (String)channel.get("video_port");
@@ -153,7 +157,7 @@ public class BoxInformationController {
             ipc.setIpcId(videoId);
             ipc.setIpcIp(videoIp);
             ipc.setIpcName(videoName);
-            ipc.setIpcposition(videoPosition);
+//            ipc.setIpcposition(videoPosition);
 //            ipc.setIpcFps(videoFps);
             ipc.setIpcBrand(videoBrand);
             ipc.setState(2);
@@ -168,6 +172,28 @@ public class BoxInformationController {
             channelEntity.setVideoPort(videoPort);
             channelEntity.setVideoStream(videoStream);
             channelService.saveOrUpdateByMultiId(channelEntity);
+
+            List<JSONObject> area_list = (List<JSONObject>)channel.get("detect_area_list");
+            for(JSONObject area:area_list){
+                Integer areaId = (Integer) area.get("area_id");
+                String detectTimeList = JSON.toJSONString(area.get("detect_time_List"));
+                String areaName = (String)area.get("area_name");
+                Integer AIeventLevel = (Integer) area.get("AIevent_level");
+                Integer AIeventProcessMode = (Integer) area.get("AIevent_processmode");
+                String AIeventProcessParam = JSON.toJSONString(area.get("AIevent_processparam"));
+                String detectAreaScope = JSON.toJSONString(area.get("detect_area_scope")) ;
+                AreaEntity areaEntity = new AreaEntity();
+                areaEntity.setAreaId(areaId);
+                areaEntity.setBoxId(boxId);
+                areaEntity.setAreaName(areaName);
+                areaEntity.setIpcId(videoId);
+                areaEntity.setAIeventLevel(AIeventLevel);
+                areaEntity.setDetectAreaScope(detectAreaScope);
+                areaEntity.setAIeventProcessmode(AIeventProcessMode);
+                areaEntity.setAIeventProcessparam(AIeventProcessParam);
+                areaEntity.setDetectTimeList(detectTimeList);
+                areaService.saveOrUpdateByMultiId(areaEntity);
+            }
 
     }
         return r;
