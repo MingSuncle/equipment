@@ -1,4 +1,4 @@
-package com.example.equipmentmanagementspring.box.entity;
+package com.example.equipmentmanagementspring.deviceConfig.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableField;

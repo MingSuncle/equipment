@@ -1,9 +1,9 @@
-package com.example.equipmentmanagementspring.box.service.impl;
+package com.example.equipmentmanagementspring.deviceConfig.service.impl;
 
 
-import com.example.equipmentmanagementspring.box.dao.BoxInformationDao;
-import com.example.equipmentmanagementspring.box.entity.BoxInformationEntity;
-import com.example.equipmentmanagementspring.box.service.BoxInformationService;
+import com.example.equipmentmanagementspring.deviceConfig.dao.BoxInformationDao;
+import com.example.equipmentmanagementspring.deviceConfig.entity.BoxInformationEntity;
+import com.example.equipmentmanagementspring.deviceConfig.service.BoxInformationService;
 import com.github.jeffreyning.mybatisplus.service.MppServiceImpl;
 import org.springframework.stereotype.Service;
 

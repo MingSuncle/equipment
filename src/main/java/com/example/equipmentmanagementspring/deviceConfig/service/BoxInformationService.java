@@ -1,6 +1,6 @@
-package com.example.equipmentmanagementspring.box.service;
+package com.example.equipmentmanagementspring.deviceConfig.service;
 
-import com.example.equipmentmanagementspring.box.entity.BoxInformationEntity;
+import com.example.equipmentmanagementspring.deviceConfig.entity.BoxInformationEntity;
 import com.github.jeffreyning.mybatisplus.service.IMppService;
 
 public interface BoxInformationService extends IMppService<BoxInformationEntity> {

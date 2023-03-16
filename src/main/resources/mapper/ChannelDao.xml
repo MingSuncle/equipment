@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.equipmentmanagementspring.deviceConfig.dao.ChannelDao">
+    <select id="getChannel" resultType="com.example.equipmentmanagementspring.deviceConfig.entity.ChannelEntity">
+        select * from `channel_config`
+        WHERE
+            `box_id` = #{boxId} and `video_id` = #{ipcId}
+    </select>
+
+    <select id="getChannelNum" resultType="Integer">
+        select count(*) from `channel_config`
+        WHERE
+            `box_id` = #{boxId} and `video_id` = #{ipcId}
+    </select>
+</mapper>

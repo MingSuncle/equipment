@@ -1,18 +1,18 @@
-package com.example.equipmentmanagementspring.box.controller;
+package com.example.equipmentmanagementspring.deviceConfig.controller;
 
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.example.equipmentmanagementspring.box.entity.BoxInformationEntity;
-import com.example.equipmentmanagementspring.box.service.BoxInformationService;
-import com.example.equipmentmanagementspring.box.utils.FileDes;
+import com.example.equipmentmanagementspring.deviceConfig.entity.BoxInformationEntity;
+import com.example.equipmentmanagementspring.deviceConfig.service.BoxInformationService;
+import com.example.equipmentmanagementspring.deviceConfig.utils.FileDes;
 import com.example.equipmentmanagementspring.entity.AreaEntity;
 import com.example.equipmentmanagementspring.entity.BoxConfigEntity;
-import com.example.equipmentmanagementspring.entity.ChannelEntity;
+import com.example.equipmentmanagementspring.deviceConfig.entity.ChannelEntity;
 import com.example.equipmentmanagementspring.entity.IpcConfigEntity;
 import com.example.equipmentmanagementspring.service.AreaService;
 import com.example.equipmentmanagementspring.service.BoxConfigService;
-import com.example.equipmentmanagementspring.service.ChannelService;
+import com.example.equipmentmanagementspring.deviceConfig.service.ChannelService;
 import com.example.equipmentmanagementspring.service.IpcConfigService;
 import com.example.equipmentmanagementspring.utils.R;
 import com.github.jeffreyning.mybatisplus.conf.EnableMPP;

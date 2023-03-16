@@ -1,9 +1,9 @@
-package com.example.equipmentmanagementspring.box.controller;
+package com.example.equipmentmanagementspring.deviceConfig.controller;
 
 
-import com.example.equipmentmanagementspring.box.dao.ModelInformationDao;
-import com.example.equipmentmanagementspring.box.entity.ModelInformationEntity;
-import com.example.equipmentmanagementspring.box.service.ModelInformationService;
+import com.example.equipmentmanagementspring.deviceConfig.dao.ModelInformationDao;
+import com.example.equipmentmanagementspring.deviceConfig.entity.ModelInformationEntity;
+import com.example.equipmentmanagementspring.deviceConfig.service.ModelInformationService;
 import com.example.equipmentmanagementspring.utils.R;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;

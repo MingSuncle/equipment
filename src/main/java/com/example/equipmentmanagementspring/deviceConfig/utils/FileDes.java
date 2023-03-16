@@ -1,4 +1,4 @@
-package com.example.equipmentmanagementspring.box.utils;
+package com.example.equipmentmanagementspring.deviceConfig.utils;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;

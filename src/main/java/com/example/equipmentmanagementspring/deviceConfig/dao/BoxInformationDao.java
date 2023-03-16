@@ -1,7 +1,7 @@
-package com.example.equipmentmanagementspring.box.dao;
+package com.example.equipmentmanagementspring.deviceConfig.dao;
 
 
-import com.example.equipmentmanagementspring.box.entity.BoxInformationEntity;
+import com.example.equipmentmanagementspring.deviceConfig.entity.BoxInformationEntity;
 import com.github.jeffreyning.mybatisplus.base.MppBaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

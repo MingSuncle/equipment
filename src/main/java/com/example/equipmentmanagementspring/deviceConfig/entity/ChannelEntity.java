@@ -1,4 +1,4 @@
-package com.example.equipmentmanagementspring.entity;
+package com.example.equipmentmanagementspring.deviceConfig.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -41,4 +41,6 @@ public class ChannelEntity implements Serializable {
 
     @TableField(value = "video_stream")
     private String videoStream;
+
+    private String eventName;
 }
