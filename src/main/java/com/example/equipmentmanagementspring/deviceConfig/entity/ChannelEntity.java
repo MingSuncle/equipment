@@ -42,5 +42,6 @@ public class ChannelEntity implements Serializable {
     @TableField(value = "video_stream")
     private String videoStream;
 
+    @TableField(value = "event_name")
     private String eventName;
 }

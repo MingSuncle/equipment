@@ -2,6 +2,7 @@ package com.example.equipmentmanagementspring.deviceConfig.controller;
 
 import com.example.equipmentmanagementspring.deviceConfig.entity.ChannelEntity;
 import com.example.equipmentmanagementspring.deviceConfig.service.ChannelService;
+import com.example.equipmentmanagementspring.deviceConfig.service.EventService;
 import com.example.equipmentmanagementspring.utils.R;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
@@ -20,8 +21,11 @@ import java.util.List;
 public class ChannelController {
     private final ChannelService channelService;
 
-    public ChannelController(ChannelService channelService) {
+    private final EventService eventService;
+
+    public ChannelController(ChannelService channelService, EventService eventService) {
         this.channelService = channelService;
+        this.eventService = eventService;
     }
 
     @ApiOperation("获取通道")

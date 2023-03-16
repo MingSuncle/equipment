@@ -4,7 +4,9 @@ package com.example.equipmentmanagementspring.deviceConfig.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.equipmentmanagementspring.deviceConfig.entity.BoxInformationEntity;
+import com.example.equipmentmanagementspring.deviceConfig.entity.EventEntity;
 import com.example.equipmentmanagementspring.deviceConfig.service.BoxInformationService;
+import com.example.equipmentmanagementspring.deviceConfig.service.EventService;
 import com.example.equipmentmanagementspring.deviceConfig.utils.FileDes;
 import com.example.equipmentmanagementspring.entity.AreaEntity;
 import com.example.equipmentmanagementspring.entity.BoxConfigEntity;
@@ -41,12 +43,15 @@ public class BoxInformationController {
 
     private final AreaService areaService;
 
-    public BoxInformationController(BoxInformationService boxInformationService, BoxConfigService boxConfigService, IpcConfigService ipcConfigService, ChannelService channelService, AreaService areaService) {
+    private final EventService eventService;
+
+    public BoxInformationController(BoxInformationService boxInformationService, BoxConfigService boxConfigService, IpcConfigService ipcConfigService, ChannelService channelService, AreaService areaService, EventService eventService) {
         this.boxInformationService = boxInformationService;
         this.boxConfigService = boxConfigService;
         this.ipcConfigService = ipcConfigService;
         this.channelService = channelService;
         this.areaService = areaService;
+        this.eventService = eventService;
     }
 
 
@@ -162,6 +167,7 @@ public class BoxInformationController {
             ipc.setIpcBrand(videoBrand);
             ipc.setState(2);
             ipcConfigService.saveOrUpdateByMultiId(ipc);
+            EventEntity event = eventService.selectByEventId(AIeventId);
             ChannelEntity channelEntity = new ChannelEntity();
             channelEntity.setBoxId(boxId);
             channelEntity.setChannelId(channelId);
@@ -169,6 +175,7 @@ public class BoxInformationController {
             channelEntity.setVideoFps(videoFps);
             channelEntity.setVideoId(videoId);
             channelEntity.setEventId(AIeventId);
+            channelEntity.setEventName(event.getAIeventName());
             channelEntity.setVideoPort(videoPort);
             channelEntity.setVideoStream(videoStream);
             channelService.saveOrUpdateByMultiId(channelEntity);
