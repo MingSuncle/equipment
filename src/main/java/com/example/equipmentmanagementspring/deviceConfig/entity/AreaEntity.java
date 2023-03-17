@@ -1,4 +1,4 @@
-package com.example.equipmentmanagementspring.entity;
+package com.example.equipmentmanagementspring.deviceConfig.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -17,11 +17,17 @@ public class AreaEntity implements Serializable {
     @TableField(value = "area_id")
     private Integer areaId;
 
+    @MppMultiId
     @TableField(value = "ipc_id")
     private String ipcId;
 
+    @MppMultiId
     @TableField(value = "box_id")
     private String boxId;
+
+    @MppMultiId
+    @TableField(value = "channel_id")
+    private Integer channelId;
 
     @TableField(value = "area_name")
     private String areaName;

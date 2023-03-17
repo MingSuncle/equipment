@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.equipmentmanagementspring.deviceConfig.dao.AreaDao">
+    <select id="getArea" resultType="com.example.equipmentmanagementspring.deviceConfig.entity.AreaEntity">
+        select * from `area`
+        WHERE
+            `box_id` = #{boxId} and `ipc_id` = #{ipcId} and `channel_id` = #{channelId}
+    </select>
+
+    <select id="getAreaNum" resultType="Integer">
+        select count(*) from `area`
+        WHERE
+            `box_id` = #{boxId} and `ipc_id` = #{ipcId} and `channel_id` = #{channelId}
+    </select>
+</mapper>

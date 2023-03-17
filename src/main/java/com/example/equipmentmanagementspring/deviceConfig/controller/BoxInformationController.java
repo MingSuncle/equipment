@@ -8,11 +8,11 @@ import com.example.equipmentmanagementspring.deviceConfig.entity.EventEntity;
 import com.example.equipmentmanagementspring.deviceConfig.service.BoxInformationService;
 import com.example.equipmentmanagementspring.deviceConfig.service.EventService;
 import com.example.equipmentmanagementspring.deviceConfig.utils.FileDes;
-import com.example.equipmentmanagementspring.entity.AreaEntity;
+import com.example.equipmentmanagementspring.deviceConfig.entity.AreaEntity;
 import com.example.equipmentmanagementspring.entity.BoxConfigEntity;
 import com.example.equipmentmanagementspring.deviceConfig.entity.ChannelEntity;
 import com.example.equipmentmanagementspring.entity.IpcConfigEntity;
-import com.example.equipmentmanagementspring.service.AreaService;
+import com.example.equipmentmanagementspring.deviceConfig.service.AreaService;
 import com.example.equipmentmanagementspring.service.BoxConfigService;
 import com.example.equipmentmanagementspring.deviceConfig.service.ChannelService;
 import com.example.equipmentmanagementspring.service.IpcConfigService;
@@ -86,7 +86,7 @@ public class BoxInformationController {
         fileDes.decrypt("/root/javaWorkspace/数据库实体设计说明书dec.doc", "/root/javaWorkspace/数据库实体设计说明书解密.doc");
 //            String path = "D:\\Zhaozian\\Project\\equipment\\src\\main\\数据库实体设计说明书dec.doc";
         try{
-        String path = "/root/javaWorkspace/数据库实体设计说明书dec.doc";
+        String path = "/root/javaWorkspace/test.zip";
             // path是指想要下载的文件的路径
             File file = new File(path);
             System.out.println(file.getPath());
@@ -191,6 +191,7 @@ public class BoxInformationController {
                 String detectAreaScope = JSON.toJSONString(area.get("detect_area_scope")) ;
                 AreaEntity areaEntity = new AreaEntity();
                 areaEntity.setAreaId(areaId);
+                areaEntity.setChannelId(channelId);
                 areaEntity.setBoxId(boxId);
                 areaEntity.setAreaName(areaName);
                 areaEntity.setIpcId(videoId);
