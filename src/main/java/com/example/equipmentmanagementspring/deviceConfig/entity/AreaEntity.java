@@ -4,11 +4,14 @@ package com.example.equipmentmanagementspring.deviceConfig.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
+import io.swagger.models.auth.In;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
+@NoArgsConstructor
 @TableName("area")
 public class AreaEntity implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -47,5 +50,10 @@ public class AreaEntity implements Serializable {
     @TableField(value = "detect_area_scope")
     private String detectAreaScope;
 
-
+    public AreaEntity(Integer areaId, String ipcId, String boxId, Integer channelId){
+        this.areaId=areaId;
+        this.ipcId=ipcId;
+        this.boxId=boxId;
+        this.channelId=channelId;
+    }
 }

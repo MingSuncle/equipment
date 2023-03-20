@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.equipmentmanagementspring.deviceConfig.dao.EventDao">
+<select id="selectByEventId" resultType="com.example.equipmentmanagementspring.deviceConfig.entity.EventEntity">
+    select * FROM `aievent`
+    WHERE `AIevent_id` =#{eventId}
+</select>
+
+</mapper>

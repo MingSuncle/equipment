@@ -7,6 +7,7 @@ import com.example.equipmentmanagementspring.utils.R;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,6 +36,19 @@ public class AreaController {
         Integer total = areaService.getAreaNum(boxId, ipcId, channelId);
         r.addData("result",result);
         r.addData("total",total);
+        return r;
+    }
+
+    @ApiOperation("删除区域配置")
+    @GetMapping("/deleteArea")
+    public R deleteArea(@RequestParam(value = "area_id") Integer areaId,
+                        @RequestParam(value = "box_id")String boxId,
+                        @RequestParam(value = "ipc_id")String ipcId,
+                        @RequestParam(value = "channel_id") Integer channelId){
+        R r = R.ok();
+        AreaEntity area = new AreaEntity(areaId,ipcId,boxId,channelId);
+        boolean result = areaService.deleteByMultiId(area);
+        r.put("result",result);
         return r;
     }
 }
