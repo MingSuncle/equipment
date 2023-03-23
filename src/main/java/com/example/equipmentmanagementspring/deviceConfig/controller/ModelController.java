@@ -33,10 +33,19 @@ public class ModelController {
         this.modelInformationDao = modelInformationDao;
     }
 
-    @ApiOperation("增/改")
-    @PostMapping("/modifyModel")
-    public R modifyModel(@RequestBody ModelInformationEntity modelInformationEntity){
+    @ApiOperation("增加模型")
+    @PostMapping("/addModel")
+    public R addModel(@RequestBody ModelInformationEntity modelInformationEntity){
         R r = R.ok();
+        modelInformationEntity.setModelVersion("1.0.0");
+        modelInformationService.saveOrUpdateByMultiId(modelInformationEntity);
+        return r;
+    }
+
+    @ApiOperation("增加新版本")
+    @PostMapping("addVersion")
+    public R addVersion(@RequestBody ModelInformationEntity modelInformationEntity){
+        R r =R.ok();
         modelInformationService.saveOrUpdateByMultiId(modelInformationEntity);
         return r;
     }

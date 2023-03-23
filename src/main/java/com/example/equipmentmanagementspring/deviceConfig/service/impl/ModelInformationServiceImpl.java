@@ -33,7 +33,7 @@ public class ModelInformationServiceImpl extends
 
     @Override
     public int saveModelPath(String modelId,String modelVersion,String modelPath) {
-        return baseMapper.savaModelPath(modelId,modelVersion,modelPath);
+        return baseMapper.saveModelPath(modelId,modelVersion,modelPath);
     }
 
     @Override
