@@ -34,4 +34,12 @@
         WHERE
             `model_id` = #{modelId}
     </select>
+
+    <update id="saveModelPath">
+        update `model_information` SET `model_file` = #{modelPath}
+        WHERE
+            `model_id` = #{modelId}
+          AND
+            `model_version` = #{modelVersion}
+    </update>
 </mapper>

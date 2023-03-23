@@ -33,11 +33,7 @@ public class ModelInformationServiceImpl extends
 
     @Override
     public int saveModelPath(String modelId,String modelVersion,String modelPath) {
-        ModelInformationEntity model = new ModelInformationEntity();
-        model.setModelId(modelId);
-        model.setModelVersion(modelVersion);
-        model.setModelFile(modelPath);
-        return baseMapper.updateByMultiId(model);
+        return baseMapper.savaModelPath(modelId,modelVersion,modelPath);
     }
 
     @Override
