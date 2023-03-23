@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.equipmentmanagementspring.deviceConfig.dao.ModelInformationDao">
+    <resultMap id="ModelMap" type="com.example.equipmentmanagementspring.deviceConfig.form.ModelForm">
+        <result property="modelId" column="modelId" />
+        <result property="modelName" column="modelName"/>
+        <result property="modelNum" column="modelNum"/>
+    </resultMap>
     <select id="getAllModel" resultType="com.example.equipmentmanagementspring.deviceConfig.entity.ModelInformationEntity">
         select * from `model_information`
     </select>
 
+    <select id="getModelByType" resultMap="ModelMap">
+        SELECT `model_id` AS modelId,`model_name` AS modelName,count(*) AS modelNum
+        FROM `model_information`
+        GROUP BY `model_id`
+    </select>
 
+    <select id="getModelNumByType" resultType="Integer">
+        SELECT count(DISTINCT model_id)
+        FROM `model_information`
+    </select>
+    
+    <select id="getModelById" resultType="com.example.equipmentmanagementspring.deviceConfig.entity.ModelInformationEntity">
+        SELECT *
+        FROM `model_information`
+        WHERE
+            `model_id` = #{modelId}
+    </select>
+
+    <select id="getModelNumById" resultType="Integer">
+        SELECT count(*)
+        FROM `model_information`
+        WHERE
+            `model_id` = #{modelId}
+    </select>
 </mapper>
