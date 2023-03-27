@@ -34,6 +34,15 @@
         WHERE
             `model_id` = #{modelId}
     </select>
+    <select id="selectOne"
+            resultType="com.example.equipmentmanagementspring.deviceConfig.entity.ModelInformationEntity">
+        SELECT *
+        FROM `model_information`
+        WHERE
+            `model_id` = #{modelId}
+        AND
+            `model_version` = #{modelVersion}
+    </select>
 
     <update id="saveModelPath">
         update `model_information` SET `model_file` = #{modelPath}

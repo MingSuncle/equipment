@@ -46,8 +46,16 @@ public class ModelController {
     @PostMapping("addVersion")
     public R addVersion(@RequestBody ModelInformationEntity modelInformationEntity){
         R r =R.ok();
-        modelInformationService.saveOrUpdateByMultiId(modelInformationEntity);
-        return r;
+        String modelVersion = modelInformationEntity.getModelVersion();
+        String modelId = modelInformationEntity.getModelId();
+        if(modelInformationService.isCreated(modelId,modelVersion)){
+            return R.error(300,"已存在");
+        }
+        else{
+            modelInformationService.saveOrUpdateByMultiId(modelInformationEntity);
+            return r;
+        }
+
     }
 
     @ApiOperation("删")

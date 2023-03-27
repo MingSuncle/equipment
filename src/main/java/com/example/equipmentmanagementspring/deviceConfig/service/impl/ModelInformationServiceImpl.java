@@ -46,5 +46,16 @@ public class ModelInformationServiceImpl extends
         return baseMapper.getModelNumById(modelId);
     }
 
+    @Override
+    public boolean isCreated(String modelId,String versionId) {
+        try{
+            baseMapper.selectOne(modelId,versionId);
+            return true;
+        }catch (NullPointerException e){
+            return false;
+        }
+
+    }
+
 
 }

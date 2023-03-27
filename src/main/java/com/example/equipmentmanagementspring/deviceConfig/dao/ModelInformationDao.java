@@ -27,4 +27,6 @@ public interface ModelInformationDao extends MppBaseMapper<ModelInformationEntit
     Integer getModelNumById(String modelId);
 
     Integer saveModelPath(String modelId,String modelVersion,String modelPath);
+
+    ModelInformationEntity selectOne(String modelId,String modelVersion);
 }
