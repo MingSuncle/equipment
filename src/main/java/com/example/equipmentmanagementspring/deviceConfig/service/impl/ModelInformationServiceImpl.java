@@ -49,8 +49,12 @@ public class ModelInformationServiceImpl extends
     @Override
     public boolean isCreated(String modelId,String versionId) {
         try{
-            baseMapper.selectOne(modelId,versionId);
-            return true;
+            if(baseMapper.selectOne(modelId,versionId)!=null){
+                return true;
+            }
+            else{
+                return false;
+            }
         }catch (NullPointerException e){
             return false;
         }
