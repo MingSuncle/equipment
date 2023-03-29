@@ -43,8 +43,8 @@ public class ModelController {
     }
 
     @ApiOperation("增加新版本")
-    @PostMapping("addVersion")
-    public R addVersion(@RequestBody ModelInformationEntity modelInformationEntity){
+    @PostMapping("/addVersion")
+    public R addVersion(@RequestBody ModelInformationEntity modelInformationEntity) throws IOException {
         R r =R.ok();
         String modelVersion = modelInformationEntity.getModelVersion();
         String modelId = modelInformationEntity.getModelId();
@@ -52,10 +52,21 @@ public class ModelController {
             return R.error(300,"已存在");
         }
         else{
+            String modelPath = "D:/Zhaozian/datatest/"+modelId+"/"+modelVersion;
+            Path path = Paths.get(modelPath);
+            Path pathCreate = Files.createDirectories(path);
             modelInformationService.saveOrUpdateByMultiId(modelInformationEntity);
             return r;
         }
 
+    }
+
+    @ApiOperation("修改模型")
+    @PostMapping("/modifyModel")
+    public R modifyModel(@RequestBody ModelInformationEntity modelInformationEntity){
+        R r =R.ok();
+        modelInformationService.saveOrUpdateByMultiId(modelInformationEntity);
+        return r;
     }
 
     @ApiOperation("删")
@@ -66,10 +77,13 @@ public class ModelController {
         ModelInformationEntity model = new ModelInformationEntity();
         model.setModelId(modelId);
         model.setModelVersion(modelVersion);
-        Path path = modelInformationService.getModelPath(modelId, modelVersion);
-
+//        Path path = modelInformationService.getModelPath(modelId, modelVersion);
+        String modelPath = "D:/Zhaozian/datatest/"+modelId+"/"+modelVersion;
+        Path path = Paths.get(modelPath);
+        FileIO fileIO = new FileIO();
         try {
-            Files.delete(path);
+//            删除文件以及文件夹
+            fileIO.DeleteFileDir(path);
             modelInformationService.deleteByMultiId(model);
         }catch (Exception e){
             String errorStr = "error: " + e.getStackTrace()[0].getClassName() + "." + e.getStackTrace()[0].getMethodName()
@@ -129,6 +143,7 @@ public class ModelController {
             modelInformationService.saveModelPath(modelId,modelVersion,result);
             return r;
         }catch (Exception e){
+            e.printStackTrace();
             return R.error("fail");
         }
 
