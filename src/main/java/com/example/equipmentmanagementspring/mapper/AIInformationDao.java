@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Zhao Zian
  */
-@Mapper
+
 public interface AIInformationDao extends BaseMapper<AIInformationEntity> {
 
 

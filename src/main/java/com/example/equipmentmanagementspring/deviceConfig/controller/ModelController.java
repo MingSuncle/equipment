@@ -38,6 +38,9 @@ public class ModelController {
     public R addModel(@RequestBody ModelInformationEntity modelInformationEntity){
         R r = R.ok();
         modelInformationEntity.setModelVersion("1.0.0");
+        if(modelInformationService.isModelCreated(modelInformationEntity.getModelId())){
+            return R.error(300,"已存在");
+        }
         modelInformationService.saveOrUpdateByMultiId(modelInformationEntity);
         return r;
     }
@@ -48,6 +51,7 @@ public class ModelController {
         R r =R.ok();
         String modelVersion = modelInformationEntity.getModelVersion();
         String modelId = modelInformationEntity.getModelId();
+
         if(modelInformationService.isCreated(modelId,modelVersion)){
             return R.error(300,"已存在");
         }

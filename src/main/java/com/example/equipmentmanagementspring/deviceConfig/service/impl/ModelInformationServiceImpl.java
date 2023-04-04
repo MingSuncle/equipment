@@ -61,5 +61,19 @@ public class ModelInformationServiceImpl extends
 
     }
 
+    @Override
+    public boolean isModelCreated(String modelId) {
+        try{
+            if(baseMapper.getModelById(modelId).size()!=0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }catch (NullPointerException e){
+            return false;
+        }
+    }
+
 
 }

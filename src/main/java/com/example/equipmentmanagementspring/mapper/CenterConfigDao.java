@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
+
 @EnableMPP
 public interface CenterConfigDao extends MppBaseMapper<CenterConfigEntity> {
 
