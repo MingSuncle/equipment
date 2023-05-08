@@ -7,6 +7,10 @@ server:
       max-request-size: 20M
 
 spring:
+  jackson:
+    time-zone: GMT+8
+    pattern: yyyy-MM-dd HH:mm:ss
+
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher

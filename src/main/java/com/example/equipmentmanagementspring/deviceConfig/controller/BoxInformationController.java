@@ -16,7 +16,11 @@ import com.example.equipmentmanagementspring.deviceConfig.service.AreaService;
 import com.example.equipmentmanagementspring.service.BoxConfigService;
 import com.example.equipmentmanagementspring.deviceConfig.service.ChannelService;
 import com.example.equipmentmanagementspring.service.IpcConfigService;
+import com.example.equipmentmanagementspring.utils.DateUtils;
 import com.example.equipmentmanagementspring.utils.R;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.jeffreyning.mybatisplus.conf.EnableMPP;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
@@ -45,6 +49,8 @@ public class BoxInformationController {
 
     private final EventService eventService;
 
+
+
     public BoxInformationController(BoxInformationService boxInformationService, BoxConfigService boxConfigService, IpcConfigService ipcConfigService, ChannelService channelService, AreaService areaService, EventService eventService) {
         this.boxInformationService = boxInformationService;
         this.boxConfigService = boxConfigService;
@@ -52,22 +58,33 @@ public class BoxInformationController {
         this.channelService = channelService;
         this.areaService = areaService;
         this.eventService = eventService;
+
     }
 
 
 //    返回通道数和事件idList
     @ApiOperation("激活盒子")
     @PostMapping ("/registerBox")
-    public R activateBox(@RequestParam(value = "box_id") String boxId) {
+    public R activateBox(@RequestParam(value = "box_id") String boxId) throws JsonProcessingException {
         R r = R.ok();
+        DateUtils dateUtils = new DateUtils();
         Integer result = boxInformationService.activateBox(boxId);
         if (result == 404) {
             r = R.error(404, "Not Found");
         }
         else{
             BoxInformationEntity box = boxInformationService.getById(boxId);
+            BoxConfigEntity temp = new BoxConfigEntity();
+            temp.setBoxNo(boxId);
+            temp.setState(2);
+            BoxConfigEntity boxConfig = boxConfigService.selectByMultiId(temp);
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(boxConfig.getCenterThirdPartyUrls());
             r.addData("channelLimit",box.getChannelNumberLimit());
             r.addData("eventList",box.getAIeventLimit());
+            r.addData("expireTime",dateUtils.format(box.getExpireTime()));
+            r.addData("thirdPartyUrls",jsonNode);
+
             return r;
         }
         return r;
@@ -137,7 +154,10 @@ public class BoxInformationController {
         String boxId = (String)object.get("box_id");
         String boxIp = (String)object.get("box_ip");
         String boxName = (String)object.get("box_name");
+        String boxThirdPartyUrl =String.valueOf(object.get("third_party_url_list"));
+        System.out.println(boxThirdPartyUrl);
         BoxConfigEntity bce = new BoxConfigEntity();
+        bce.setCenterThirdPartyUrls(boxThirdPartyUrl);
         bce.setBoxNo(boxId);
         bce.setState(2);
         bce.setBoxIp(boxIp);
