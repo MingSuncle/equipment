@@ -204,7 +204,7 @@ public class ResponseConfigController {
         ice.setIpcIp(videoIp);
         ice.setIpcName(videoName);
         ice.setIpcUrl(videoUrl);
-        ice.setIpcposition(videoPosition);
+        ice.setIpcPosition(videoPosition);
 //        UpdateWrapper<IpcConfigEntity> iwrapper =  new UpdateWrapper<IpcConfigEntity>();
 //        iwrapper.eq("ipc_id",ice.getIpcId()).eq("state",2);
 //        ipcConfigService.saveOrUpdate(ice,iwrapper);
@@ -320,7 +320,7 @@ public class ResponseConfigController {
         ice.setIpcIp(videoIp);
         ice.setIpcName(videoName);
         ice.setIpcUrl(videoUrl);
-        ice.setIpcposition(videoPosition);
+        ice.setIpcPosition(videoPosition);
 //        UpdateWrapper<IpcConfigEntity> iwrapper =  new UpdateWrapper<IpcConfigEntity>();
 //        iwrapper.eq("ipc_id",ice.getIpcId()).eq("state",2);
 //        ipcConfigService.saveOrUpdate(ice,iwrapper);

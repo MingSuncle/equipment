@@ -24,7 +24,7 @@ public class IpcConfigEntity implements Serializable{
         private String ipcIp;
 
         @TableField(value = "ipc_position")
-        private String ipcposition;
+        private String ipcPosition;
 
         @TableField(value = "ipc_box_no")
         private String ipcBoxNo;

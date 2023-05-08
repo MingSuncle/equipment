@@ -7,10 +7,7 @@ import com.example.equipmentmanagementspring.utils.R;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,6 +34,14 @@ public class ChannelController {
         Integer total = channelService.getChannelNum(ipcId,boxId);
         r.addData("result",result);
         r.addData("total",total);
+        return r;
+    }
+
+    @ApiOperation("修改通道")
+    @PostMapping("updateChannel")
+    public R updateChannel(@RequestBody ChannelEntity channelEntity){
+        R r = R.ok();
+        channelService.saveOrUpdateByMultiId(channelEntity);
         return r;
     }
 }

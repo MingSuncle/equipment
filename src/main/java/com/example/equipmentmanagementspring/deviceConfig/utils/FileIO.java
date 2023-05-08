@@ -18,8 +18,8 @@ public class FileIO{
             File f = new File(filePath + fileName);
             file.transferTo(f);
             fileName = filePath + fileName;
-
             FileInputStream fileInputStream = new FileInputStream(new File(fileName));
+            fileInputStream.close();
             return fileName;
         }catch (Exception e){
 

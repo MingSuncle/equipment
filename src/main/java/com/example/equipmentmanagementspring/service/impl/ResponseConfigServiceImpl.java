@@ -114,7 +114,7 @@ public class ResponseConfigServiceImpl implements ResponseConfigService {
         videoInformation.put("video_ip", ipcConfig.getIpcIp());
         videoInformation.put("video_id", ipcConfig.getIpcId());
         videoInformation.put("video_name", ipcConfig.getIpcName());
-        videoInformation.put("video_position", ipcConfig.getIpcposition());
+        videoInformation.put("video_position", ipcConfig.getIpcPosition());
         videoInformation.put("video_url", ipcConfig.getIpcUrl());
         boxVideoInformationList.add(videoInformation);
       }
@@ -191,7 +191,7 @@ public class ResponseConfigServiceImpl implements ResponseConfigService {
         videoInformation.put("video_ip", ipcConfig.getIpcIp());
         videoInformation.put("video_id", ipcConfig.getIpcId());
         videoInformation.put("video_name", ipcConfig.getIpcName());
-        videoInformation.put("video_position", ipcConfig.getIpcposition());
+        videoInformation.put("video_position", ipcConfig.getIpcPosition());
         videoInformation.put("video_url", ipcConfig.getIpcUrl());
         boxVideoInformationList.add(videoInformation);
       }

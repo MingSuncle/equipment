@@ -30,4 +30,5 @@ public class BoxInformationEntity implements Serializable {
 
     @TableField(value = "AIevent_limit")
     private String AIeventLimit;
+
 }
