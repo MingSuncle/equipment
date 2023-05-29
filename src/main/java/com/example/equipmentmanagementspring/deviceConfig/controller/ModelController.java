@@ -11,6 +11,7 @@ import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,6 +28,9 @@ import java.util.List;
 public class ModelController {
     private final ModelInformationService modelInformationService;
     private final ModelInformationDao modelInformationDao;
+
+    @Value("${userPath.modelExplore}")
+    private String modelExplore;
 
     public ModelController(ModelInformationService modelInformationService, ModelInformationDao modelInformationDao) {
         this.modelInformationService = modelInformationService;
@@ -56,7 +60,7 @@ public class ModelController {
             return R.error(300,"已存在");
         }
         else{
-            String modelPath = "D:/Zhaozian/datatest/"+modelId+"/"+modelVersion;
+            String modelPath = modelExplore+modelId+"/"+modelVersion;
             Path path = Paths.get(modelPath);
             Path pathCreate = Files.createDirectories(path);
             modelInformationService.saveOrUpdateByMultiId(modelInformationEntity);
@@ -82,7 +86,7 @@ public class ModelController {
         model.setModelId(modelId);
         model.setModelVersion(modelVersion);
 //        Path path = modelInformationService.getModelPath(modelId, modelVersion);
-        String modelPath = "D:/Zhaozian/datatest/"+modelId+"/"+modelVersion;
+        String modelPath = modelExplore+modelId+"/"+modelVersion;
         Path path = Paths.get(modelPath);
         FileIO fileIO = new FileIO();
         try {
@@ -137,7 +141,7 @@ public class ModelController {
                          @RequestParam("model_id")String modelId,
                          @RequestParam("model_version")String modelVersion) throws IOException {
         R r = R.ok();
-        String modelPath = "D:/Zhaozian/datatest/"+modelId+"/"+modelVersion;
+        String modelPath = modelExplore+modelId+"/"+modelVersion;
         Path path = Paths.get(modelPath);
         Path pathCreate = Files.createDirectories(path);
         modelPath = modelPath+"/";

@@ -44,6 +44,9 @@ mybatis-plus:
 user.filepath: /root/picture/
 #user.filepath: E:/upload/
 
+userPath:
+  modelExplore: D:/Zhaozian/datatest/
+
 # github 捞来的 swagger，因为不喜欢原来那种 ui，所以选择用这个做 Api 文档
 knife4j:
   enable: true
