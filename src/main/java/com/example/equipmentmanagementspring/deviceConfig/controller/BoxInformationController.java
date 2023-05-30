@@ -3,18 +3,12 @@ package com.example.equipmentmanagementspring.deviceConfig.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.example.equipmentmanagementspring.deviceConfig.entity.BoxInformationEntity;
-import com.example.equipmentmanagementspring.deviceConfig.entity.EventEntity;
-import com.example.equipmentmanagementspring.deviceConfig.service.BoxInformationService;
-import com.example.equipmentmanagementspring.deviceConfig.service.EventService;
+import com.example.equipmentmanagementspring.deviceConfig.entity.*;
+import com.example.equipmentmanagementspring.deviceConfig.service.*;
 import com.example.equipmentmanagementspring.deviceConfig.utils.FileDes;
-import com.example.equipmentmanagementspring.deviceConfig.entity.AreaEntity;
 import com.example.equipmentmanagementspring.entity.BoxConfigEntity;
-import com.example.equipmentmanagementspring.deviceConfig.entity.ChannelEntity;
 import com.example.equipmentmanagementspring.entity.IpcConfigEntity;
-import com.example.equipmentmanagementspring.deviceConfig.service.AreaService;
 import com.example.equipmentmanagementspring.service.BoxConfigService;
-import com.example.equipmentmanagementspring.deviceConfig.service.ChannelService;
 import com.example.equipmentmanagementspring.service.IpcConfigService;
 import com.example.equipmentmanagementspring.utils.DateUtils;
 import com.example.equipmentmanagementspring.utils.R;
@@ -25,12 +19,25 @@ import com.github.jeffreyning.mybatisplus.conf.EnableMPP;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
+import org.apache.catalina.connector.ClientAbortException;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.rmi.ServerException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Objects;
 
 
 @Api(tags = "盒子")
@@ -49,9 +56,14 @@ public class BoxInformationController {
 
     private final EventService eventService;
 
+    private final BoxModelService boxModelService;
+
+    private final ModelInformationService modelInformationService;
 
 
-    public BoxInformationController(BoxInformationService boxInformationService, BoxConfigService boxConfigService, IpcConfigService ipcConfigService, ChannelService channelService, AreaService areaService, EventService eventService) {
+
+
+    public BoxInformationController(BoxInformationService boxInformationService, BoxConfigService boxConfigService, IpcConfigService ipcConfigService, ChannelService channelService, AreaService areaService, EventService eventService, BoxModelService boxModelService, ModelInformationService modelInformationService) {
         this.boxInformationService = boxInformationService;
         this.boxConfigService = boxConfigService;
         this.ipcConfigService = ipcConfigService;
@@ -59,6 +71,8 @@ public class BoxInformationController {
         this.areaService = areaService;
         this.eventService = eventService;
 
+        this.boxModelService = boxModelService;
+        this.modelInformationService = modelInformationService;
     }
 
 
@@ -79,7 +93,14 @@ public class BoxInformationController {
             temp.setState(2);
             BoxConfigEntity boxConfig = boxConfigService.selectByMultiId(temp);
             ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(boxConfig.getCenterThirdPartyUrls());
+            JsonNode jsonNode = null;
+            try {
+                jsonNode = objectMapper.readTree(boxConfig.getCenterThirdPartyUrls());
+            } catch (Exception e) {
+
+            }
+
+
             r.addData("channelLimit",box.getChannelNumberLimit());
             r.addData("eventList",box.getAIeventLimit());
             r.addData("expireTime",dateUtils.format(box.getExpireTime()));
@@ -226,4 +247,49 @@ public class BoxInformationController {
     }
         return r;
     }
+
+    @ApiOperation("更新模型")
+    @RequestMapping("/UpdateModel")
+    public ResponseEntity<Resource> getBoxModel(@RequestParam(value = "box_id")String boxId,
+    @RequestParam(value = "current_version")String currentVersion,
+    HttpServletResponse response) throws Exception {
+        BoxModelEntity boxModel =boxModelService.getOne(boxId);
+
+        if(!Objects.equals(currentVersion, boxModel.getCorrectVersion())){
+            ModelInformationEntity model = modelInformationService.getOne(boxModel.getModelId(),boxModel.getCorrectVersion());
+            try{
+                String path = model.getModelFile();
+                // path是指想要下载的文件的路径
+                File file = new File(path);
+                Resource resource = new FileSystemResource(file);
+
+                // 设置响应头
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Disposition", "attachment;filename=" + URLEncoder.encode(file.getName(), "UTF-8"));
+                // 告知浏览器文件的大小
+                headers.add("Content-Length", "" + file.length());
+                headers.add("Access-Control-Expose-Headers","Model_Version");
+                headers.add("Model_Version",boxModel.getCorrectVersion());
+                // 使用流式传输下载文件
+                return ResponseEntity.ok()
+                        .headers(headers)
+                        .contentLength(file.length())
+                        .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                        .body(resource);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            }
+        }
+        else{
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Access-Control-Expose-Headers","Model_Version");
+            headers.add("Model_Version","modelAlreadyNewest!");
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .body(null);
+        }
+    }
+
+
 }

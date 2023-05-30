@@ -21,4 +21,6 @@ public interface ModelInformationService extends IMppService<ModelInformationEnt
     boolean isCreated(String modelId,String versionId);
 
     boolean isModelCreated(String modelId);
+
+    ModelInformationEntity getOne(String modelId,String modelVersion);
 }

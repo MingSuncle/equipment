@@ -32,4 +32,12 @@ public class BoxInformationEntity implements Serializable {
     @TableField(value = "AIevent_limit")
     private String AIeventLimit;
 
+    @TableField(value = "activate_time")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date activateTime;
+
+    @TableField(value = "sale_time")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date saleTime;
+
 }

@@ -75,5 +75,13 @@ public class ModelInformationServiceImpl extends
         }
     }
 
+    @Override
+    public ModelInformationEntity getOne(String modelId, String modelVersion) {
+        ModelInformationEntity model = new ModelInformationEntity();
+        model.setModelId(modelId);
+        model.setModelVersion(modelVersion);
+        return baseMapper.selectByMultiId(model);
+    }
+
 
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.equipmentmanagementspring.deviceConfig.dao.BoxModelDao">
+
+    <select id="getOne" resultType="com.example.equipmentmanagementspring.deviceConfig.entity.BoxModelEntity">
+        SELECT *
+        FROM `box_model`
+        WHERE `box_id` = #{boxId}
+    </select>
+</mapper>
