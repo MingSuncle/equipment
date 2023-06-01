@@ -23,4 +23,9 @@ public class BoxModelServiceImpl extends
     public BoxModelEntity getOne(String boxId) {
         return baseMapper.getOne(boxId);
     }
+
+    @Override
+    public Integer confirmBoxModelVersion(String boxId, String currentVersion) {
+        return baseMapper.confirmBoxModelVersion(boxId, currentVersion);
+    }
 }

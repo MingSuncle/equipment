@@ -7,4 +7,6 @@ public interface BoxModelService extends IMppService<BoxModelEntity> {
     BoxModelEntity getBoxModel(String boxId,String modelId);
 
     BoxModelEntity getOne(String boxId);
+
+    Integer confirmBoxModelVersion(String boxId,String currentVersion);
 }

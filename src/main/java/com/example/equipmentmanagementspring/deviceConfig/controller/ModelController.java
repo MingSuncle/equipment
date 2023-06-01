@@ -29,7 +29,7 @@ public class ModelController {
     private final ModelInformationService modelInformationService;
     private final ModelInformationDao modelInformationDao;
 
-    @Value("${userPath.modelExplore}")
+    @Value("/root/modelFile/")
     private String modelExplore;
 
     public ModelController(ModelInformationService modelInformationService, ModelInformationDao modelInformationDao) {

@@ -291,5 +291,14 @@ public class BoxInformationController {
         }
     }
 
-
+    @ApiOperation("确认模型版本")
+    @GetMapping("/confirmBoxModelVersion")
+    public R confirmBoxVersion(@RequestParam(value = "box_id")String boxId,
+                               @RequestParam(value = "current_version")String currentVersion)
+    {
+        R r = R.ok();
+        boxModelService.confirmBoxModelVersion(boxId,currentVersion);
+        r.addData("result","success");
+        return r;
+    }
 }

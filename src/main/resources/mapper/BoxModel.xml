@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.equipmentmanagementspring.deviceConfig.dao.BoxModelDao">
+    <update id="confirmBoxModelVersion">
+        UPDATE `box_model`
+        SET `current_version` = #{currentVersion}
+        WHERE `box_id` = #{boxId}
+    </update>
 
     <select id="getOne" resultType="com.example.equipmentmanagementspring.deviceConfig.entity.BoxModelEntity">
         SELECT *
