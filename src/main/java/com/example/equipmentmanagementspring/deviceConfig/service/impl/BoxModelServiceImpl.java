@@ -28,4 +28,14 @@ public class BoxModelServiceImpl extends
     public Integer confirmBoxModelVersion(String boxId, String currentVersion) {
         return baseMapper.confirmBoxModelVersion(boxId, currentVersion);
     }
+
+    @Override
+    public Integer setCodeVersion(String boxId) {
+        return baseMapper.setCodeVersion(boxId);
+    }
+
+    @Override
+    public Integer setCodeUnfinished() {
+        return baseMapper.setCodeVersionUnfinished();
+    }
 }

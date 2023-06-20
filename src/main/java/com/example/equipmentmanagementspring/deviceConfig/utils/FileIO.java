@@ -28,6 +28,19 @@ public class FileIO{
         }
     }
 
+    public String uploadCode(String filePath, MultipartFile file) throws Exception{
+        try {
+            File f = new File(filePath);
+            file.transferTo(f);
+            FileInputStream fileInputStream = new FileInputStream(new File(filePath));
+            fileInputStream.close();
+            return filePath;
+        }catch (Exception e){
+
+            e.printStackTrace();
+            return "fail";
+        }
+    }
     public void DeleteFileDir(Path path) throws IOException {
         Files.walkFileTree(path,
                 new SimpleFileVisitor<Path>() {

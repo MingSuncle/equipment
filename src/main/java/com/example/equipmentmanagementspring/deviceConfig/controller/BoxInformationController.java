@@ -19,8 +19,7 @@ import com.github.jeffreyning.mybatisplus.conf.EnableMPP;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
-import org.apache.catalina.connector.ClientAbortException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -29,13 +28,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.rmi.ServerException;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,6 +41,9 @@ import java.util.Objects;
 @RequestMapping("/box")
 @EnableMPP
 public class BoxInformationController {
+    @Value("${userPath.codeFile}")
+    private String codeFile;
+
     private final BoxInformationService boxInformationService;
     private final BoxConfigService boxConfigService;
 
@@ -60,10 +58,12 @@ public class BoxInformationController {
 
     private final ModelInformationService modelInformationService;
 
+    private final ProcessParamService processParamService;
 
 
 
-    public BoxInformationController(BoxInformationService boxInformationService, BoxConfigService boxConfigService, IpcConfigService ipcConfigService, ChannelService channelService, AreaService areaService, EventService eventService, BoxModelService boxModelService, ModelInformationService modelInformationService) {
+
+    public BoxInformationController(BoxInformationService boxInformationService, BoxConfigService boxConfigService, IpcConfigService ipcConfigService, ChannelService channelService, AreaService areaService, EventService eventService, BoxModelService boxModelService, ModelInformationService modelInformationService, ProcessParamService processParamService) {
         this.boxInformationService = boxInformationService;
         this.boxConfigService = boxConfigService;
         this.ipcConfigService = ipcConfigService;
@@ -73,6 +73,7 @@ public class BoxInformationController {
 
         this.boxModelService = boxModelService;
         this.modelInformationService = modelInformationService;
+        this.processParamService = processParamService;
     }
 
 
@@ -249,7 +250,7 @@ public class BoxInformationController {
     }
 
     @ApiOperation("更新模型")
-    @RequestMapping("/UpdateModel")
+    @RequestMapping("/updateModel")
     public ResponseEntity<Resource> getBoxModel(@RequestParam(value = "box_id")String boxId,
     @RequestParam(value = "current_version")String currentVersion,
     HttpServletResponse response) throws Exception {
@@ -291,6 +292,46 @@ public class BoxInformationController {
         }
     }
 
+    @ApiOperation("更新代码")
+    @RequestMapping("/updateCode")
+    public ResponseEntity<Resource> getBoxModel(@RequestParam(value = "box_id")String boxId,
+            HttpServletResponse response) throws Exception {
+        BoxModelEntity boxModel =boxModelService.getOne(boxId);
+
+        if(boxModel.getCodeVersion() == 1){
+            try{
+                String path = codeFile;
+                // path是指想要下载的文件的路径
+                File file = new File(path);
+                Resource resource = new FileSystemResource(file);
+
+                // 设置响应头
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Disposition", "attachment;filename=" + URLEncoder.encode(file.getName(), "UTF-8"));
+                // 告知浏览器文件的大小
+                headers.add("Content-Length", "" + file.length());
+                boxModelService.setCodeVersion(boxId);
+                // 使用流式传输下载文件
+                return ResponseEntity.ok()
+                        .headers(headers)
+                        .contentLength(file.length())
+                        .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                        .body(resource);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            }
+        }
+        else{
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Access-Control-Expose-Headers","Code_Version");
+            headers.add("Code_Version","codeAlreadyNewest!");
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .body(null);
+        }
+
+    }
     @ApiOperation("确认模型版本")
     @GetMapping("/confirmBoxModelVersion")
     public R confirmBoxVersion(@RequestParam(value = "box_id")String boxId,
@@ -300,5 +341,16 @@ public class BoxInformationController {
         boxModelService.confirmBoxModelVersion(boxId,currentVersion);
         r.addData("result","success");
         return r;
+    }
+
+    @ApiOperation("获取处理参数")
+    @GetMapping("/getProcessParam")
+    public R getProcessParam(){
+        R r = R.ok();
+        List<ProcessParam> result = processParamService.getAll();
+        r.addData("result",result);
+        System.out.println(codeFile);
+        return r;
+
     }
 }

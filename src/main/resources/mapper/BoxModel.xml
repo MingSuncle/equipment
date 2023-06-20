@@ -8,6 +8,18 @@
         WHERE `box_id` = #{boxId}
     </update>
 
+    <update id="setCodeVersion">
+        UPDATE `box_model`
+        SET `code_version` = 0
+        WHERE
+            box_id = #{boxId}
+    </update>
+
+    <update id="setCodeVersionUnfinished">
+        UPDATE `box_model`
+        SET `code_version` = 1
+    </update>
+
     <select id="getOne" resultType="com.example.equipmentmanagementspring.deviceConfig.entity.BoxModelEntity">
         SELECT *
         FROM `box_model`

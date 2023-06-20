@@ -9,4 +9,8 @@ public interface BoxModelService extends IMppService<BoxModelEntity> {
     BoxModelEntity getOne(String boxId);
 
     Integer confirmBoxModelVersion(String boxId,String currentVersion);
+
+    Integer setCodeVersion(String boxId);
+
+    Integer setCodeUnfinished();
 }

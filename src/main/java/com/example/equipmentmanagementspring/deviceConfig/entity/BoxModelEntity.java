@@ -20,4 +20,7 @@ public class BoxModelEntity {
 
     @TableField("correct_version")
     private String correctVersion;
+
+    @TableField("code_version")
+    private Integer codeVersion;
 }

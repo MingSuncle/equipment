@@ -6,4 +6,12 @@
             SELECT * FROM `heart_detect`
             WHERE `video_id` = #{video_id}
         </select>
+
+    <select id="getLastDate" resultType="java.util.Date">
+        SELECT update_time
+        FROM `heart_detect`
+        WHERE box_id = #{boxId}
+        ORDER BY update_time DESC
+        limit 0,1
+    </select>
 </mapper>

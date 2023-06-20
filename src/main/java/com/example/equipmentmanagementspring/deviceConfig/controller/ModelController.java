@@ -4,6 +4,7 @@ package com.example.equipmentmanagementspring.deviceConfig.controller;
 import com.example.equipmentmanagementspring.deviceConfig.dao.ModelInformationDao;
 import com.example.equipmentmanagementspring.deviceConfig.entity.ModelInformationEntity;
 import com.example.equipmentmanagementspring.deviceConfig.form.ModelForm;
+import com.example.equipmentmanagementspring.deviceConfig.service.BoxModelService;
 import com.example.equipmentmanagementspring.deviceConfig.service.ModelInformationService;
 import com.example.equipmentmanagementspring.deviceConfig.utils.FileIO;
 import com.example.equipmentmanagementspring.utils.R;
@@ -19,6 +20,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Api(tags = "模型")
@@ -26,15 +33,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/model")
 public class ModelController {
+    @Value("${userPath.codeFile}")
+    private String codeFile;
+
     private final ModelInformationService modelInformationService;
     private final ModelInformationDao modelInformationDao;
 
+    private final BoxModelService boxModelService;
     @Value("/root/modelFile/")
     private String modelExplore;
 
-    public ModelController(ModelInformationService modelInformationService, ModelInformationDao modelInformationDao) {
+    public ModelController(ModelInformationService modelInformationService, ModelInformationDao modelInformationDao, BoxModelService boxModelService) {
         this.modelInformationService = modelInformationService;
         this.modelInformationDao = modelInformationDao;
+        this.boxModelService = boxModelService;
     }
 
     @ApiOperation("增加模型")
@@ -154,6 +166,69 @@ public class ModelController {
             e.printStackTrace();
             return R.error("fail");
         }
+    }
 
+    @ApiOperation("上传代码文件")
+    @PostMapping("/uploadCode")
+    @ApiOperationSupport(order = 20)
+    public R uploadModel(@RequestParam("file")MultipartFile file) throws IOException {
+        R r = R.ok();
+        String codePath = codeFile;
+        Path path = Paths.get(codePath);
+        if(Files.exists(path)){
+            try {
+                Files.delete(path);
+                try{
+                    FileIO fileIO = new FileIO();
+                    String result = fileIO.uploadCode(codePath,file);
+                    return r;
+                }catch (Exception e){
+                    e.printStackTrace();
+                    return R.error("fail");
+                }
+            } catch (Exception e) {
+                System.out.println("文件删除失败：" + e.getMessage());
+                return R.error("fail");
+            }
+        }
+        else{
+            try{
+                FileIO fileIO = new FileIO();
+                String result = fileIO.uploadCode(codePath,file);
+                return r;
+            }catch (Exception e){
+                e.printStackTrace();
+                return R.error("fail");
+            }
+        }
+    }
+
+    @ApiOperation("获取代码更新时间")
+    @GetMapping("/getCodeLastUpdateTime")
+    @ApiOperationSupport(order = 20)
+    public R getCodeLastUpdateTime() throws IOException{
+        R r = R.ok();
+        try {
+            Path file = Paths.get(codeFile);
+            BasicFileAttributes attrs = Files.readAttributes(file, BasicFileAttributes.class);
+            FileTime modifiedTime = attrs.lastModifiedTime();
+            Instant instant = modifiedTime.toInstant();
+
+            // 将 Instant 转换为本地日期时间
+            LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+
+            // 定义日期时间格式化器
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+            // 格式化日期时间并输出
+            String formattedTime = localDateTime.format(formatter);
+            r.addData("time",formattedTime);
+            System.out.println("File modification time: " + formattedTime);
+            boxModelService.setCodeUnfinished();
+            return r;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return R.error("fail");
+        }
     }
 }
