@@ -250,7 +250,7 @@ public class BoxInformationController {
     }
 
     @ApiOperation("更新模型")
-    @RequestMapping("/updateModel")
+    @RequestMapping("/UpdateModel")
     public ResponseEntity<Resource> getBoxModel(@RequestParam(value = "box_id")String boxId,
     @RequestParam(value = "current_version")String currentVersion,
     HttpServletResponse response) throws Exception {
@@ -294,7 +294,7 @@ public class BoxInformationController {
 
     @ApiOperation("更新代码")
     @RequestMapping("/updateCode")
-    public ResponseEntity<Resource> getBoxModel(@RequestParam(value = "box_id")String boxId,
+    public ResponseEntity<Resource> updateCode(@RequestParam(value = "box_id")String boxId,
             HttpServletResponse response) throws Exception {
         BoxModelEntity boxModel =boxModelService.getOne(boxId);
 
@@ -310,7 +310,6 @@ public class BoxInformationController {
                 headers.add("Content-Disposition", "attachment;filename=" + URLEncoder.encode(file.getName(), "UTF-8"));
                 // 告知浏览器文件的大小
                 headers.add("Content-Length", "" + file.length());
-                boxModelService.setCodeVersion(boxId);
                 // 使用流式传输下载文件
                 return ResponseEntity.ok()
                         .headers(headers)
@@ -330,8 +329,16 @@ public class BoxInformationController {
                     .headers(headers)
                     .body(null);
         }
-
     }
+
+    @ApiOperation("更新代码确认")
+    @GetMapping("/updateCodeConfirm")
+    public R updateCodeConfirm(@RequestParam(value = "box_id")String boxId) throws Exception {
+        R r = R.ok();
+        boxModelService.setCodeVersion(boxId);
+        return r;
+    }
+
     @ApiOperation("确认模型版本")
     @GetMapping("/confirmBoxModelVersion")
     public R confirmBoxVersion(@RequestParam(value = "box_id")String boxId,
@@ -349,7 +356,6 @@ public class BoxInformationController {
         R r = R.ok();
         List<ProcessParam> result = processParamService.getAll();
         r.addData("result",result);
-        System.out.println(codeFile);
         return r;
 
     }

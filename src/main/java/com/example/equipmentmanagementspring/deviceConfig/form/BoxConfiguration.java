@@ -25,8 +25,6 @@ public class BoxConfiguration {
 
     @Data
     public static class Channel {
-        private Integer channel_id;
-        private String channel_name;
         @JsonProperty("AIevent_id")
         private Integer AIevent_id;
         private String video_id;
@@ -46,7 +44,6 @@ public class BoxConfiguration {
 
         @Data
         public static class DetectArea {
-            private Integer area_id;
             private String area_name;
             @JsonProperty("AIevent_level")
             private Integer AIevent_level;

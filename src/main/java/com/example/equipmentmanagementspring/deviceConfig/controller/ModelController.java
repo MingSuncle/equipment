@@ -228,7 +228,7 @@ public class ModelController {
             return r;
         } catch (IOException e) {
             e.printStackTrace();
-            return R.error("fail");
+            return R.error(e.getMessage());
         }
     }
 }

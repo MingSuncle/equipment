@@ -12,4 +12,6 @@ public interface HeartDetectService extends IMppService<HeartDetectEntity> {
 
     Date getLastDate(String boxId);
 
+    String getPicUrl(String boxId,String videoId);
+
 }

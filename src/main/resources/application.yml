@@ -46,8 +46,9 @@ user.filepath: /root/picture/
 
 userPath:
   modelExplore: /root/modelFile/
+  codeFile : /root/modelFile/www.rar
 #  codeFile: D:/Zhaozian/datatest/www.rar
-  codeFile : /root/www.rar
+
 
 # github 捞来的 swagger，因为不喜欢原来那种 ui，所以选择用这个做 Api 文档
 knife4j:

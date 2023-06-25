@@ -23,4 +23,9 @@ public class HeartDetectServiceImpl extends
         return baseMapper.getLastDate(boxId);
     }
 
+    @Override
+    public String getPicUrl(String boxId, String videoId) {
+        return baseMapper.getPicUrl(boxId, videoId);
+    }
+
 }

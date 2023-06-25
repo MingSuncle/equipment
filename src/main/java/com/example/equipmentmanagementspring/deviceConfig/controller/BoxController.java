@@ -1,6 +1,8 @@
 package com.example.equipmentmanagementspring.deviceConfig.controller;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.equipmentmanagementspring.deviceConfig.form.BoxConfiguration;
 import com.example.equipmentmanagementspring.service.HeartDetectService;
 import com.example.equipmentmanagementspring.utils.R;
@@ -12,7 +14,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -66,6 +70,45 @@ public class BoxController {
         return r;
     }
 
+    @ApiOperation("获取图片")
+    @GetMapping("/getImg")
+    public R getImg(@RequestParam(value = "box_id")String boxId,
+                    @RequestParam(value = "video_id")String videoId)
+            throws IOException{
+        R r = R.ok();
+        String Img = heartDetectService.getPicUrl(boxId, videoId);
+        r.addData("Img",Img);
+        return r;
+    }
+
+    @PostMapping("/uploadConfig")
+    public R saveJsonToFile(@RequestBody String jsonString) {
+        R r = R.ok();
+        JSONObject object = JSON.parseObject(jsonString.toString());
+        Object config =object.get("boxConfigList");
+        String input = config.toString();
+        System.out.println(input);
+        try {
+            // 创建一个新的.json文件
+            File newFile = new File("output.json");
+            FileWriter fileWriter = new FileWriter("output.json");
+            if (newFile.exists()) {
+                newFile.delete();
+            }
+            // 使用BufferedWriter来写入数据
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(input);
+
+            // 关闭资源
+            bufferedWriter.close();
+            fileWriter.close();
+
+            return r;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return R.error("保存失败");
+        }
+    }
     @ApiOperation("盒子在线状态")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @GetMapping("/getBoxStatus")
